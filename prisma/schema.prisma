@@ -1,0 +1,246 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// The committed schema targets SQLite so the demo runs with zero setup.
+// Production runs Postgres: `npm run db:pg:push` derives an identical
+// Postgres schema from this file (see scripts/gen-pg-schema.mjs) so the models
+// below stay the single source of truth. Never hand-edit the derived schema.
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Tenancy & auth
+// ---------------------------------------------------------------------------
+
+// One dealership = one tenant. Every business record below hangs off this, and
+// every query is scoped to the signed-in user's dealership.
+model Dealership {
+  id        String   @id @default(cuid())
+  name      String
+  // URL segment for the public inventory site: /lot/<slug>
+  slug      String   @unique
+  city      String   @default("")
+  state     String   @default("WI")
+  phone     String   @default("")
+  email     String   @default("")
+  // Google review link used by the post-sale follow-up
+  reviewUrl String   @default("")
+  createdAt DateTime @default(now())
+
+  users          User[]
+  vehicles       Vehicle[]
+  customers      Customer[]
+  leads          Lead[]
+  templates      Template[]
+  businessHours  BusinessHours[]
+  scheduleBlocks ScheduleBlock[]
+  sourceSettings SourceSetting[]
+}
+
+model User {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  name         String
+  // scrypt hash — see lib/auth.ts. Never store plaintext.
+  passwordHash String
+  dealershipId String
+  dealership   Dealership @relation(fields: [dealershipId], references: [id], onDelete: Cascade)
+  createdAt    DateTime   @default(now())
+  sessions     Session[]
+}
+
+// Server-side sessions. The cookie holds a random token; only its SHA-256 hash
+// is stored, so a database leak can't be replayed as a login.
+model Session {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+// ---------------------------------------------------------------------------
+// Inventory
+// ---------------------------------------------------------------------------
+
+model Vehicle {
+  id                 String     @id @default(cuid())
+  dealershipId       String
+  dealership         Dealership @relation(fields: [dealershipId], references: [id], onDelete: Cascade)
+  vin                String
+  year               Int
+  make               String
+  model              String
+  trim               String
+  mileage            Int
+  cost               Int
+  price              Int
+  status             String     @default("available") // available | pending | sold | recon
+  acquiredAt         DateTime
+  // Per-channel listing state. Website is published by us directly; Facebook and
+  // Craigslist are assisted posts the dealer confirms (see lib/posting.ts).
+  listedWebsiteAt    DateTime?
+  listedFacebookAt   DateTime?
+  listedCraigslistAt DateTime?
+  description        String?
+  leads              Lead[]
+  deals              Deal[]
+  photos             Photo[]
+  createdAt          DateTime   @default(now())
+
+  // VINs are unique per dealership, not globally — two lots can each stock a
+  // vehicle we've never seen, and one lot must never collide with another's.
+  @@unique([dealershipId, vin])
+  @@index([dealershipId])
+}
+
+model Photo {
+  id        String   @id @default(cuid())
+  vehicleId String
+  vehicle   Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  url       String
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([vehicleId])
+}
+
+// Dealer-defined listing templates, one pool per posting channel. Placeholders:
+// {{year}} {{make}} {{model}} {{trim}} {{mileage}} {{price}} {{vin}}
+model Template {
+  id           String     @id @default(cuid())
+  dealershipId String
+  dealership   Dealership @relation(fields: [dealershipId], references: [id], onDelete: Cascade)
+  name         String
+  body         String
+  channel      String     @default("description") // description | facebook | craigslist
+  createdAt    DateTime   @default(now())
+
+  @@index([dealershipId])
+}
+
+// ---------------------------------------------------------------------------
+// Schedule
+// ---------------------------------------------------------------------------
+
+// Weekly business hours; null open/close = closed that day. weekday 0 = Sunday.
+model BusinessHours {
+  id           String     @id @default(cuid())
+  dealershipId String
+  dealership   Dealership @relation(fields: [dealershipId], references: [id], onDelete: Cascade)
+  weekday      Int
+  open         String?
+  close        String?
+
+  @@unique([dealershipId, weekday])
+}
+
+// Calendar blocks (out of office, auction runs...) — excluded from suggested
+// test-drive slots, Outlook-style.
+model ScheduleBlock {
+  id           String     @id @default(cuid())
+  dealershipId String
+  dealership   Dealership @relation(fields: [dealershipId], references: [id], onDelete: Cascade)
+  title        String
+  startsAt     DateTime
+  endsAt       DateTime
+  createdAt    DateTime   @default(now())
+
+  @@index([dealershipId])
+}
+
+// ---------------------------------------------------------------------------
+// People & conversations
+// ---------------------------------------------------------------------------
+
+model Customer {
+  id            String     @id @default(cuid())
+  dealershipId  String
+  dealership    Dealership @relation(fields: [dealershipId], references: [id], onDelete: Cascade)
+  name          String
+  town          String
+  phone         String
+  email         String
+  lastContactAt DateTime?
+  // TCPA: we may only text a customer who has opted in, and must honor STOP.
+  smsConsent    Boolean    @default(false)
+  smsOptOutAt   DateTime?
+  deals         Deal[]
+  followUps     FollowUp[]
+  createdAt     DateTime   @default(now())
+
+  @@index([dealershipId])
+}
+
+model Lead {
+  id           String     @id @default(cuid())
+  dealershipId String
+  dealership   Dealership @relation(fields: [dealershipId], references: [id], onDelete: Cascade)
+  name         String
+  contact      String     // phone or email shown in inbox
+  source       String     // facebook | website | phone | walkin | craigslist
+  status       String     @default("new") // new | replied | booked | closed
+  unread       Boolean    @default(true)
+  afterHours   Boolean    @default(false)
+  autoHandled  Boolean    @default(false) // answered by AuctionDesk auto-pilot
+  vehicleId    String?
+  vehicle      Vehicle?   @relation(fields: [vehicleId], references: [id])
+  messages     Message[]
+  createdAt    DateTime
+
+  @@index([dealershipId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  sender    String   // customer | ai | owner
+  body      String
+  // How this message actually travelled: sms | email | manual.
+  channel   String   @default("manual")
+  createdAt DateTime
+
+  @@index([leadId])
+}
+
+model Deal {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  vehicleId  String
+  vehicle    Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  price      Int
+  closedAt   DateTime
+
+  @@index([customerId])
+  @@index([vehicleId])
+}
+
+model FollowUp {
+  id           String    @id @default(cuid())
+  customerId   String
+  customer     Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  type         String    // thankyou | checkin | tradein
+  status       String    @default("scheduled") // scheduled | sent | failed
+  scheduledFor DateTime
+  sentAt       DateTime?
+
+  @@index([customerId])
+}
+
+model SourceSetting {
+  id           String     @id @default(cuid())
+  dealershipId String
+  dealership   Dealership @relation(fields: [dealershipId], references: [id], onDelete: Cascade)
+  source       String
+  autoPilot    Boolean    @default(false)
+
+  @@unique([dealershipId, source])
+}
