@@ -12,8 +12,10 @@ async function hashPassword(password: string) {
   return `scrypt:${salt}:${derived.toString("hex")}`;
 }
 
-// The demo dealership's login. Documented in README so demos can sign in.
+// The demo dealership's logins. Documented in README so demos can sign in.
+// Same password for both — this data only ever lives in a local SQLite file.
 const DEMO_EMAIL = "dale@foxvalleyauto.com";
+const DEMO_STAFF_EMAIL = "jordan@foxvalleyauto.com";
 const DEMO_PASSWORD = "demo1234";
 
 // Helpers to build dates relative to "now" so the demo always looks live.
@@ -66,6 +68,19 @@ async function main() {
       email: DEMO_EMAIL,
       name: "Dale Vandenberg",
       passwordHash: await hashPassword(DEMO_PASSWORD),
+      role: "owner",
+      dealershipId,
+    },
+  });
+
+  // A salesperson, so the demo shows what staff can and can't do: Dale sees
+  // Settings → Team, Jordan doesn't.
+  await prisma.user.create({
+    data: {
+      email: DEMO_STAFF_EMAIL,
+      name: "Jordan Reyes",
+      passwordHash: await hashPassword(DEMO_PASSWORD),
+      role: "staff",
       dealershipId,
     },
   });
@@ -79,6 +94,7 @@ async function main() {
       email: "owner@lakeshoremotors.com",
       name: "Pat Lakeshore",
       passwordHash: await hashPassword(DEMO_PASSWORD),
+      role: "owner",
       dealershipId: other.id,
     },
   });

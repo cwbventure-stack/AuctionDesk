@@ -14,6 +14,7 @@
     "db:pg:deploy": "node scripts/gen-pg-schema.mjs && prisma migrate deploy --schema prisma/schema.postgres.prisma",
     "db:pg:generate": "node scripts/gen-pg-schema.mjs && prisma generate --schema prisma/schema.postgres.prisma",
     "seed:pg": "npm run db:pg:push && tsx prisma/seed.ts",
+    "admin:grant": "tsx scripts/grant-admin.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {

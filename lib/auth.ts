@@ -60,10 +60,14 @@ export async function createSession(userId: string): Promise<void> {
   });
 }
 
+export type Role = "owner" | "staff";
+
 export interface SessionUser {
   id: string;
   email: string;
   name: string;
+  role: Role;
+  isSuperAdmin: boolean;
   dealershipId: string;
   dealershipName: string;
   dealershipSlug: string;
@@ -93,6 +97,9 @@ export async function getSessionUser(): Promise<SessionUser | null> {
     id: session.user.id,
     email: session.user.email,
     name: session.user.name,
+    // Anything that isn't a known role is treated as the least privileged one.
+    role: session.user.role === "staff" ? "staff" : "owner",
+    isSuperAdmin: session.user.isSuperAdmin,
     dealershipId: session.user.dealershipId,
     dealershipName: session.user.dealership.name,
     dealershipSlug: session.user.dealership.slug,
@@ -113,6 +120,31 @@ export async function requireUser(): Promise<SessionUser> {
 /** Convenience for the common case: "which tenant am I acting on?" */
 export async function requireDealershipId(): Promise<string> {
   return (await requireUser()).dealershipId;
+}
+
+/**
+ * Gate for managing the dealership itself — staff, hours, templates. Throws for
+ * salespeople, so an owner-only action fails closed if the UI ever forgets to
+ * hide its button.
+ */
+export async function requireOwner(): Promise<SessionUser> {
+  const user = await requireUser();
+  if (user.role !== "owner") throw new Error("Owners only");
+  return user;
+}
+
+/**
+ * Gate for the cross-tenant support area under /admin.
+ *
+ * Deliberately separate from requireDealershipId: everything else in the app
+ * filters by the signed-in dealership and fails closed, and that invariant is
+ * what keeps one lot's data away from another. Super-admin queries opt out of it
+ * explicitly, one route at a time — never by relaxing the tenant filters.
+ */
+export async function requireSuperAdmin(): Promise<SessionUser> {
+  const user = await requireUser();
+  if (!user.isSuperAdmin) throw new Error("Not authorized");
+  return user;
 }
 
 export async function destroySession(): Promise<void> {

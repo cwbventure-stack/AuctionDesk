@@ -39,7 +39,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             <p className="truncate text-xs font-medium text-slate-700">{user.dealershipName}</p>
             {location && <p className="text-[11px] text-slate-400">{location}</p>}
           </div>
-          <UserMenu name={user.name} email={user.email} />
+          <UserMenu name={user.name} email={user.email} isSuperAdmin={user.isSuperAdmin} />
         </div>
       </aside>
 

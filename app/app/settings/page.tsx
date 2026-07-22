@@ -1,15 +1,17 @@
 import { HoursEditor, TemplatesEditor } from "@/components/settings-editors";
 import { SchedulerCalendar } from "@/components/scheduler-calendar";
+import { TeamEditor } from "@/components/team-editor";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
-import { requireDealershipId } from "@/lib/auth";
+import { requireUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { nextTestDriveSlots } from "@/lib/schedule";
-import { CalendarClock, Clock, FileText } from "lucide-react";
+import { CalendarClock, Clock, FileText, Users } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export default async function SettingsPage() {
-  const dealershipId = await requireDealershipId();
+  const user = await requireUser();
+  const dealershipId = user.dealershipId;
   const [hours, blocks, templates, slots] = await Promise.all([
     prisma.businessHours.findMany({ where: { dealershipId } }),
     prisma.scheduleBlock.findMany({
@@ -19,6 +21,15 @@ export default async function SettingsPage() {
     prisma.template.findMany({ where: { dealershipId }, orderBy: { createdAt: "asc" } }),
     nextTestDriveSlots(dealershipId, 2),
   ]);
+
+  // Staff don't manage the roster, so we don't even load it for them.
+  const team = user.role === "owner"
+    ? await prisma.user.findMany({
+        where: { dealershipId },
+        select: { id: true, name: true, email: true, role: true },
+        orderBy: { createdAt: "asc" },
+      })
+    : [];
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
@@ -82,6 +93,23 @@ export default async function SettingsPage() {
           <TemplatesEditor templates={templates} />
         </CardContent>
       </Card>
+
+      {user.role === "owner" && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-base">
+              <Users className="h-4 w-4 text-amber-600" /> Team
+            </CardTitle>
+            <p className="text-xs text-slate-500">
+              Everyone who can sign in to your lot. Owners manage the dealership; staff work
+              leads and inventory.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <TeamEditor members={team} currentUserId={user.id} />
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }

@@ -27,11 +27,18 @@ npm install && npm run seed && npm run dev
 
 Open http://localhost:3000 — the marketing landing page.
 
-**Sign in** at http://localhost:3000/login with the seeded demo account:
+**Sign in** at http://localhost:3000/login with a seeded demo account:
 
-| Email | Password |
-|---|---|
-| `dale@foxvalleyauto.com` | `demo1234` |
+| Email | Password | Role |
+|---|---|---|
+| `dale@foxvalleyauto.com` | `demo1234` | Owner — also manages the team in Settings |
+| `jordan@foxvalleyauto.com` | `demo1234` | Staff — works leads and inventory |
+
+Sign in as each to see the difference: only owners get **Settings → Team**, where they add
+people and switch them between owner and staff.
+
+This demo data lives **only** in your local SQLite file. Production databases are seeded by
+nobody — the first real dealership is created by signing up in the app.
 
 The dealer app is at `/app`. Each dealership also gets a **public inventory site** at
 `/lot/<slug>` — the demo one is http://localhost:3000/lot/fox-valley-auto.
@@ -47,6 +54,19 @@ timestamps relative to "now", so leads always look fresh).
 **Going to production?** See **[DEPLOYMENT.md](./DEPLOYMENT.md)** — the app is already
 wired for managed Postgres, S3/R2 photo storage, and health monitoring; you just supply
 the credentials. `/api/health` reports which backends are live.
+
+### Platform admin
+
+`/admin` is a cross-tenant support console: every dealership, every user, password resets,
+and a "sign them out everywhere" button. It's the one place that reads across tenants, so
+access can't be granted from inside the app — sign up normally, then run:
+
+```bash
+npm run admin:grant -- you@example.com          # local
+# against production, generate the Postgres client and pass the URL explicitly:
+npm run db:pg:generate
+DATABASE_URL="<pooler-url>" npm run admin:grant -- you@example.com
+```
 
 ## 5-minute demo walkthrough script
 

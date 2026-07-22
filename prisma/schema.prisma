@@ -46,6 +46,13 @@ model User {
   name         String
   // scrypt hash — see lib/auth.ts. Never store plaintext.
   passwordHash String
+  // Permissions inside the dealership: owners manage staff, hours, and templates;
+  // staff work leads and inventory. Defaults to owner so the person who signs a
+  // lot up controls it. See requireOwner in lib/auth.ts.
+  role         String     @default("owner") // owner | staff
+  // Platform support access across every tenant — AuctionDesk staff only. Never
+  // grantable through the dealership UI; see requireSuperAdmin in lib/auth.ts.
+  isSuperAdmin Boolean    @default(false)
   dealershipId String
   dealership   Dealership @relation(fields: [dealershipId], references: [id], onDelete: Cascade)
   createdAt    DateTime   @default(now())

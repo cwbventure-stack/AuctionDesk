@@ -74,11 +74,13 @@ export async function signup(input: {
     })),
   });
 
+  // Whoever signs the lot up owns it, and can add staff from Settings → Team.
   const user = await prisma.user.create({
     data: {
       email,
       name,
       passwordHash: await hashPassword(input.password),
+      role: "owner",
       dealershipId: dealership.id,
     },
   });
