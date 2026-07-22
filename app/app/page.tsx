@@ -1,9 +1,10 @@
 import { LeadsChart, type MonthBucket } from "@/components/leads-chart";
 import { Badge, Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 import { requireUser } from "@/lib/auth";
+import { overdueTakedowns } from "@/lib/marketplace";
 import { prisma } from "@/lib/prisma";
 import { daysOnLot } from "@/lib/utils";
-import { AlarmClock, ArrowRight, Clock, Inbox, MessageSquareText, Send, TimerReset, TrendingDown } from "lucide-react";
+import { AlarmClock, ArrowRight, Clock, Inbox, MessageSquareText, Send, ShieldAlert, TimerReset, TrendingDown } from "lucide-react";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
@@ -25,6 +26,12 @@ export default async function Dashboard() {
 
   // Time saved: every syndicated listing used to take ~40 minutes by hand.
   const hoursSaved = ((allListed * 40) / 60).toFixed(1);
+
+  // Sold cars still listed on Facebook/Craigslist. Past 24 hours this is what
+  // gets a dealer's Marketplace account flagged, so it outranks everything else
+  // on the action list when it happens.
+  const takedowns = await overdueTakedowns(dealershipId);
+  const urgentTakedowns = takedowns.filter((t) => t.hoursOverdue > 0);
 
   const staleVehicles = vehicles
     .map((v) => ({ ...v, dol: daysOnLot(v.acquiredAt) }))
@@ -119,6 +126,28 @@ export default async function Dashboard() {
             <CardTitle className="text-base">Today&apos;s action list</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
+            {urgentTakedowns.length > 0 && (
+              <Link
+                href={`/app/inventory/${urgentTakedowns[0].vehicleId}`}
+                className="flex items-center gap-3 rounded-lg border border-red-300 bg-red-50/60 p-3 transition-colors hover:bg-red-50"
+              >
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-100 text-red-700">
+                  <ShieldAlert className="h-4 w-4" />
+                </span>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-red-900">
+                    {urgentTakedowns.length} sold car
+                    {urgentTakedowns.length === 1 ? "" : "s"} still listed
+                  </p>
+                  <p className="text-xs text-red-700">
+                    {urgentTakedowns[0].label} — {urgentTakedowns[0].hoursOverdue}h past Meta&apos;s
+                    24-hour takedown window
+                  </p>
+                </div>
+                <ArrowRight className="h-4 w-4 text-red-400" />
+              </Link>
+            )}
+
             <Link
               href="/app/leads"
               className="flex items-center gap-3 rounded-lg border border-slate-200 p-3 transition-colors hover:border-blue-300 hover:bg-blue-50/40"

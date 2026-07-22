@@ -89,7 +89,17 @@ model Vehicle {
   cost               Int
   price              Int
   status             String     @default("available") // available | pending | sold | recon
+  // Required by Meta's vehicle catalog feed spec. Blank values are allowed here
+  // but drop the vehicle from the feed — see lib/feed.ts.
+  bodyStyle          String     @default("") // SEDAN | SUV | TRUCK | COUPE | VAN | ...
+  exteriorColor      String     @default("")
+  transmission       String     @default("") // AUTOMATIC | MANUAL
+  fuelType           String     @default("") // GASOLINE | DIESEL | HYBRID | ELECTRIC | ...
   acquiredAt         DateTime
+  // When the vehicle was marked sold. Meta expects sold listings down within 24
+  // hours, so takedown reminders are driven off this rather than Deal.closedAt —
+  // a vehicle can be marked sold without a deal record ever being created.
+  soldAt             DateTime?
   // Per-channel listing state. Website is published by us directly; Facebook and
   // Craigslist are assisted posts the dealer confirms (see lib/posting.ts).
   listedWebsiteAt    DateTime?

@@ -8,16 +8,20 @@ import {
   type Channel,
 } from "@/app/posting-actions";
 import { Button } from "@/components/ui";
+import type { ComplianceIssue, PaceStatus } from "@/lib/marketplace-rules";
 import { cn, fullDate } from "@/lib/utils";
 import {
+  AlertTriangle,
   Check,
   CheckCircle2,
   Circle,
+  Clock,
   ExternalLink,
   Globe,
   Loader2,
   MessagesSquare,
   Newspaper,
+  ShieldAlert,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -47,6 +51,8 @@ export function PostingPanel({
   craigslistCopy,
   publicUrl,
   sold,
+  facebookIssues,
+  pace,
 }: {
   vehicleId: string;
   websiteAt: string | null;
@@ -56,9 +62,18 @@ export function PostingPanel({
   craigslistCopy: string;
   publicUrl: string;
   sold: boolean;
+  /** Marketplace policy problems with this vehicle's copy. */
+  facebookIssues: ComplianceIssue[];
+  /** Whether posting another vehicle right now is safe for the dealer's account. */
+  pace: PaceStatus;
 }) {
   const router = useRouter();
   const [busy, setBusy] = useState<string | null>(null);
+
+  // A "block" issue is one that risks the account, not just reach — so it stops
+  // the post rather than merely warning.
+  const hasBlocker = facebookIssues.some((i) => i.severity === "block");
+  const canPostFacebook = pace.canPostNow && !hasBlocker;
 
   const channels: ChannelState[] = [
     { key: "website", label: "Your website", icon: Globe, listedAt: websiteAt },
@@ -152,11 +167,21 @@ export function PostingPanel({
               </div>
             ) : (
               /* Facebook + Craigslist are assisted: we prep, the dealer posts. */
-              <div className="mt-2 flex flex-wrap items-center gap-2">
+              <div className="mt-2 space-y-2">
+                {/* Marketplace posts go out from the owner's personal account, and
+                    Meta bans it for 30 days on a first spam strike — so we show
+                    what's wrong before they post, not after. */}
+                {c.key === "facebook" && !live && (
+                  <MarketplaceGuardrails issues={facebookIssues} pace={pace} />
+                )}
+                <div className="flex flex-wrap items-center gap-2">
                 <Button
                   variant="secondary"
                   size="sm"
-                  disabled={sold && !live}
+                  disabled={
+                    (sold && !live) ||
+                    (c.key === "facebook" && !live && !canPostFacebook)
+                  }
                   onClick={() =>
                     copyAndOpen(
                       c.key as "facebook" | "craigslist",
@@ -199,6 +224,7 @@ export function PostingPanel({
                     I posted it
                   </Button>
                 )}
+                </div>
               </div>
             )}
           </div>
@@ -210,6 +236,60 @@ export function PostingPanel({
         posting — AuctionDesk writes the listing and opens the form so you just paste and
         submit, which keeps your accounts safe.
       </p>
+    </div>
+  );
+}
+
+/**
+ * The pre-flight check for a Marketplace post: pace first (it stops you outright),
+ * then anything wrong with the copy.
+ */
+function MarketplaceGuardrails({ issues, pace }: { issues: ComplianceIssue[]; pace: PaceStatus }) {
+  const blockers = issues.filter((i) => i.severity === "block");
+  const warnings = issues.filter((i) => i.severity === "warn");
+
+  if (pace.canPostNow && issues.length === 0) {
+    return (
+      <p className="flex items-center gap-1.5 text-[11px] text-emerald-700">
+        <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
+        Ready to post · {pace.remainingToday} of {pace.remainingToday + pace.postedToday} left today
+      </p>
+    );
+  }
+
+  return (
+    <div className="space-y-1.5 rounded-lg bg-slate-50 p-2.5">
+      {!pace.canPostNow && pace.reason && (
+        <p className="flex items-start gap-1.5 text-[11px] font-medium text-amber-800">
+          <Clock className="mt-px h-3.5 w-3.5 shrink-0" />
+          {pace.reason}
+        </p>
+      )}
+
+      {blockers.map((issue, i) => (
+        <p key={`b${i}`} className="flex items-start gap-1.5 text-[11px] text-red-700">
+          <ShieldAlert className="mt-px h-3.5 w-3.5 shrink-0" />
+          <span>
+            <strong>{issue.message}</strong> {issue.fix}
+          </span>
+        </p>
+      ))}
+
+      {warnings.map((issue, i) => (
+        <p key={`w${i}`} className="flex items-start gap-1.5 text-[11px] text-amber-700">
+          <AlertTriangle className="mt-px h-3.5 w-3.5 shrink-0" />
+          <span>
+            {issue.message} {issue.fix}
+          </span>
+        </p>
+      ))}
+
+      {blockers.length > 0 && (
+        <p className="text-[10px] text-slate-500">
+          Meta bans first-time spam violations for 30 days, and these posts come from your
+          personal account — worth fixing before it goes out.
+        </p>
+      )}
     </div>
   );
 }

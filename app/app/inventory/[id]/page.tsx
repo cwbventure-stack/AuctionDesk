@@ -5,6 +5,8 @@ import { Badge, Card, CardContent, CardHeader, CardTitle } from "@/components/ui
 import { VehicleDetailsCard } from "@/components/vehicle-details-card";
 import { generateListing } from "@/lib/ai";
 import { requireUser } from "@/lib/auth";
+import { facebookPaceFor } from "@/lib/marketplace";
+import { checkFacebookListing } from "@/lib/marketplace-rules";
 import { prisma } from "@/lib/prisma";
 import { cn, daysOnLot, dolColor, fullDate, money, STATUS_LABELS } from "@/lib/utils";
 import { ListingTabs } from "@/components/listing-tabs";
@@ -35,6 +37,16 @@ export default async function VehicleDetail({ params }: { params: Promise<{ id: 
   const listing = await generateListing(vehicle); // mock-mode: instant, deterministic
   // The dealer's saved (possibly hand-edited) description always wins.
   if (vehicle.description) listing.description = vehicle.description;
+
+  // Checked server-side against the copy that will actually be posted, so an
+  // edited description is what gets screened.
+  const facebookIssues = checkFacebookListing({
+    title: `${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}`.trim(),
+    body: listing.facebook,
+    price: vehicle.price,
+    photoCount: vehicle.photos.length,
+  });
+  const pace = await facebookPaceFor(user.dealershipId);
 
   const channels = [
     { label: "Website", at: vehicle.listedWebsiteAt },
@@ -116,6 +128,8 @@ export default async function VehicleDetail({ params }: { params: Promise<{ id: 
                 craigslistCopy={listing.craigslist}
                 publicUrl={`/lot/${user.dealershipSlug}/${vehicle.id}`}
                 sold={vehicle.status === "sold"}
+                facebookIssues={facebookIssues}
+                pace={pace}
               />
               <div className="border-t border-slate-100 pt-4">
                 <MarkSoldButton vehicleId={vehicle.id} sold={vehicle.status === "sold"} />

@@ -83,6 +83,8 @@ export async function markVehicleSold(vehicleId: string): Promise<SoldResult> {
     where: { id: vehicleId },
     data: {
       status: "sold",
+      // Starts the 24-hour clock Meta expects sold listings to come down within.
+      soldAt: new Date(),
       // Ours to control — off the public site right away.
       listedWebsiteAt: null,
       // Facebook/Craigslist stay flagged until the dealer confirms removal, so
@@ -100,7 +102,9 @@ export async function reopenVehicle(vehicleId: string) {
   const dealershipId = await requireDealershipId();
   const { count } = await prisma.vehicle.updateMany({
     where: { id: vehicleId, dealershipId },
-    data: { status: "available" },
+    // Clearing soldAt stops the takedown reminders for a vehicle that's back on
+    // the lot.
+    data: { status: "available", soldAt: null },
   });
   if (count === 0) throw new Error("Vehicle not found");
   revalidatePath("/app/inventory");

@@ -5,7 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 import { requireUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { nextTestDriveSlots } from "@/lib/schedule";
-import { CalendarClock, Clock, FileText, Users } from "lucide-react";
+import { ArrowRight, CalendarClock, Clock, FileText, Share2, Users } from "lucide-react";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -39,6 +40,24 @@ export default async function SettingsPage() {
           Your hours, your calendar, your voice — AuctionDesk works around them.
         </p>
       </div>
+
+      <Link href="/app/settings/channels" className="block">
+        <Card className="transition-colors hover:border-blue-300 hover:bg-blue-50/30">
+          <CardContent className="flex items-center gap-3 p-4">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-violet-50 text-violet-600">
+              <Share2 className="h-4.5 w-4.5" />
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-medium text-slate-900">Where your cars go</p>
+              <p className="text-xs text-slate-500">
+                Your inventory site, the Facebook catalog, Marketplace, and Craigslist — set up and
+                posting rules.
+              </p>
+            </div>
+            <ArrowRight className="h-4 w-4 shrink-0 text-slate-400" />
+          </CardContent>
+        </Card>
+      </Link>
 
       <Card>
         <CardHeader>

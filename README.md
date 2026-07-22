@@ -152,6 +152,19 @@ month?"
   verified that another tenant's record 404s on both page loads and API calls.
 - **Your public inventory site** (`/lot/<slug>`) — genuinely automatic publishing to a
   channel you own. Publish/remove is one click and takes effect immediately.
+- **Embed on the dealer's existing website** — two lines of HTML render live inventory on
+  Wix/Squarespace/WordPress, backed by a public JSON feed. Updates itself.
+- **Meta vehicle catalog feed** — a per-dealership CSV at `/api/feed/<slug>/vehicles.csv`
+  in Meta's vehicle spec. The dealer connects it once in Commerce Manager and Facebook
+  re-fetches on a schedule, so inventory, prices, and sold cars sync with no partner
+  approval. Drives paid Automotive Inventory Ads, *not* free Marketplace listings.
+  Vehicles missing required fields are held back rather than sent and rejected.
+- **Marketplace posting guardrails** — assisted posts are screened against Facebook's
+  actual rules before they go out: the 10/day limit, 5-minute spacing, banned finance
+  phrases, bait pricing, all-caps titles, missing photos, and 24-hour sold takedowns.
+  A first spam violation is a 30-day ban on the dealer's *personal* account, so risky
+  posts are blocked rather than warned about. Rules are pure functions with assertions:
+  `npm run check:rules`.
 - **Website lead capture** — the public listing page has a form that creates a real lead
   in the inbox, auto-matched to the vehicle, with TCPA consent captured at submit time.
 - **Inbound SMS** (`/api/sms/inbound`) — texts create or continue leads. STOP is honored

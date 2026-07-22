@@ -110,6 +110,10 @@ async function main() {
       cost: 24000,
       price: 29995,
       status: "available",
+      bodyStyle: "TRUCK",
+      exteriorColor: "Silver",
+      transmission: "AUTOMATIC",
+      fuelType: "GASOLINE",
       acquiredAt: daysAgo(10),
     },
   });
@@ -134,6 +138,25 @@ async function main() {
     { vin: "4T1B11HK1KU203847", year: 2019, make: "Toyota", model: "Camry", trim: "LE", mileage: 58920, cost: 15200, price: 18995, status: "sold", acquiredAt: daysAgo(88) },
   ];
 
+  // Meta's vehicle catalog feed requires body style, color, transmission, and
+  // fuel type — a vehicle missing any of them is dropped from the feed. Derived
+  // from the model rather than hand-typed on 14 rows.
+  const BODY_STYLES: Record<string, string> = {
+    "F-150": "TRUCK",
+    "Silverado 1500": "TRUCK",
+    Tacoma: "TRUCK",
+    "Grand Caravan": "MINIVAN",
+    Camry: "SEDAN",
+    Outback: "WAGON",
+  };
+  const COLORS = ["White", "Silver", "Black", "Gray", "Blue", "Dark Red", "Green"];
+  const specsFor = (model: string, i: number) => ({
+    bodyStyle: BODY_STYLES[model] ?? "SUV",
+    exteriorColor: COLORS[i % COLORS.length],
+    transmission: "AUTOMATIC",
+    fuelType: "GASOLINE",
+  });
+
   const vehicles = [] as { id: string; year: number; make: string; model: string }[];
   for (const [i, v] of vehicleData.entries()) {
     // Most available vehicles are already syndicated (feeds the time-saved counter)
@@ -142,6 +165,7 @@ async function main() {
     const created = await prisma.vehicle.create({
       data: {
         ...v,
+        ...specsFor(v.model, i),
         dealershipId,
         listedWebsiteAt: listedAt,
         listedFacebookAt: listedAt ? new Date(listedAt.getTime() + 4 * 60_000) : null,
