@@ -172,3 +172,5 @@ Next.js (App Router) · TypeScript · Tailwind CSS · Prisma + SQLite · Anthrop
 
 See `DEMO_NOTES.md` for how to swap in a specific dealership's real inventory in under 10
 minutes before a meeting.
+
+_Deployed via Vercel._
