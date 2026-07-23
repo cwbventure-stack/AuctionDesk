@@ -7,7 +7,9 @@ import {
   removeFromWebsite,
   type Channel,
 } from "@/app/posting-actions";
+import { MarketplacePostHelper } from "@/components/marketplace-post-helper";
 import { Button } from "@/components/ui";
+import type { MarketplaceField } from "@/lib/marketplace-fields";
 import type { ComplianceIssue, PaceStatus } from "@/lib/marketplace-rules";
 import { cn, fullDate } from "@/lib/utils";
 import {
@@ -53,6 +55,9 @@ export function PostingPanel({
   sold,
   facebookIssues,
   pace,
+  facebookFields,
+  craigslistFields,
+  photoCount,
 }: {
   vehicleId: string;
   websiteAt: string | null;
@@ -66,6 +71,12 @@ export function PostingPanel({
   facebookIssues: ComplianceIssue[];
   /** Whether posting another vehicle right now is safe for the dealer's account. */
   pace: PaceStatus;
+  /** Facebook's form fields, in its on-screen order, ready to copy across. */
+  facebookFields: MarketplaceField[];
+  /** Craigslist's form fields, likewise. */
+  craigslistFields: MarketplaceField[];
+  /** How many photos the vehicle has — drives the "download all" bundle. */
+  photoCount: number;
 }) {
   const router = useRouter();
   const [busy, setBusy] = useState<string | null>(null);
@@ -174,57 +185,66 @@ export function PostingPanel({
                 {c.key === "facebook" && !live && (
                   <MarketplaceGuardrails issues={facebookIssues} pace={pace} />
                 )}
-                <div className="flex flex-wrap items-center gap-2">
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  disabled={
-                    (sold && !live) ||
-                    (c.key === "facebook" && !live && !canPostFacebook)
-                  }
-                  onClick={() =>
-                    copyAndOpen(
-                      c.key as "facebook" | "craigslist",
-                      c.key === "facebook" ? facebookCopy : craigslistCopy,
-                    )
-                  }
-                >
-                  <ExternalLink className="h-3.5 w-3.5" />
-                  Copy &amp; open {c.key === "facebook" ? "Marketplace" : "Craigslist"}
-                </Button>
+
                 {live ? (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    disabled={isBusy}
-                    onClick={() =>
-                      run(
-                        c.key,
-                        () => markChannelRemoved(vehicleId, c.key),
-                        `Marked removed from ${c.label}`,
-                      )
-                    }
-                  >
-                    {isBusy && <Loader2 className="h-3.5 w-3.5 animate-spin" />} Mark removed
-                  </Button>
+                  /* Already posted — a quick way to re-copy for edits, plus mark removed. */
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={() =>
+                        copyAndOpen(
+                          c.key as "facebook" | "craigslist",
+                          c.key === "facebook" ? facebookCopy : craigslistCopy,
+                        )
+                      }
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" />
+                      Copy &amp; open {c.key === "facebook" ? "Marketplace" : "Craigslist"}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      disabled={isBusy}
+                      onClick={() =>
+                        run(
+                          c.key,
+                          () => markChannelRemoved(vehicleId, c.key),
+                          `Marked removed from ${c.label}`,
+                        )
+                      }
+                    >
+                      {isBusy && <Loader2 className="h-3.5 w-3.5 animate-spin" />} Mark removed
+                    </Button>
+                  </div>
                 ) : (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    disabled={isBusy}
-                    onClick={() =>
-                      run(
-                        c.key,
-                        () => markChannelPosted(vehicleId, c.key),
-                        `Marked posted on ${c.label}`,
-                      )
-                    }
-                  >
-                    {isBusy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Check className="h-3.5 w-3.5" />}
-                    I posted it
-                  </Button>
+                  <>
+                    <MarketplacePostHelper
+                      channel={c.key as "facebook" | "craigslist"}
+                      createUrl={POST_URLS[c.key as "facebook" | "craigslist"]}
+                      fields={c.key === "facebook" ? facebookFields : craigslistFields}
+                      description={c.key === "facebook" ? facebookCopy : craigslistCopy}
+                      photoCount={photoCount}
+                      photosZipUrl={`/api/vehicle/${vehicleId}/photos`}
+                      disabled={sold || (c.key === "facebook" && !canPostFacebook)}
+                    />
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      disabled={isBusy}
+                      onClick={() =>
+                        run(
+                          c.key,
+                          () => markChannelPosted(vehicleId, c.key),
+                          `Marked posted on ${c.label}`,
+                        )
+                      }
+                    >
+                      {isBusy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Check className="h-3.5 w-3.5" />}
+                      I posted it
+                    </Button>
+                  </>
                 )}
-                </div>
               </div>
             )}
           </div>

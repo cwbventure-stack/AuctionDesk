@@ -1,5 +1,6 @@
 // Assertions for the Marketplace rules. No test framework in this project, so
 // this is a script: `npx tsx scripts/check-marketplace-rules.ts`.
+import { craigslistFields, facebookFields, type FieldVehicle } from "../lib/marketplace-fields";
 import { checkFacebookListing, checkPace, takedownOverdueBy } from "../lib/marketplace-rules";
 
 let failures = 0;
@@ -71,6 +72,39 @@ const hoursAgo = (h: number) => new Date(Date.UTC(2026, 6, 22, 12) - h * 3_600_0
 check("fresh sale not overdue", takedownOverdueBy(hoursAgo(2), t(0)), 0);
 check("exactly 24h not overdue", takedownOverdueBy(hoursAgo(24), t(0)), 0);
 check("30h is 6h overdue", takedownOverdueBy(hoursAgo(30), t(0)), 6);
+
+// --- field mapping ---
+const fullVehicle: FieldVehicle = {
+  year: 2019, make: "Honda", model: "CR-V", trim: "EX AWD",
+  mileage: 68400, price: 21995, vin: "5J6RW2H85KL003471",
+  bodyStyle: "SUV", exteriorColor: "Silver", transmission: "AUTOMATIC", fuelType: "GASOLINE",
+};
+const bareVehicle: FieldVehicle = {
+  year: 2015, make: "Chevrolet", model: "Silverado 1500", trim: "LT",
+  mileage: 112870, price: 16750, vin: "3GCUKREC1FG204851",
+  bodyStyle: "", exteriorColor: "", transmission: "", fuelType: "",
+};
+
+const fb = facebookFields(fullVehicle);
+const fbField = (label: string) => fb.find((f) => f.label === label);
+check("fb price is bare number", fbField("Price")?.value, "21995");
+check("fb mileage is bare number", fbField("Mileage")?.value, "68400");
+check("fb body style mapped to option label", fbField("Body style")?.value, "SUV");
+check("fb transmission mapped", fbField("Transmission")?.value, "Automatic transmission");
+check("full vehicle has no empty fb fields", fb.some((f) => f.empty), false);
+
+const fbBare = facebookFields(bareVehicle);
+check("missing body style is flagged empty", fbBare.find((f) => f.label === "Body style")?.empty, true);
+check("year still present when specs missing", fbBare.find((f) => f.label === "Year")?.value, "2015");
+
+const cl = craigslistFields(fullVehicle);
+const clField = (label: string) => cl.find((f) => f.label === label);
+check("cl title includes price", clField("Posting title")?.value, "2019 Honda CR-V EX AWD - $21,995");
+check("cl odometer is mileage", clField("Odometer")?.value, "68400");
+check("cl transmission drops the word 'transmission'", clField("Transmission")?.value, "Automatic");
+check("cl postal code is left for the dealer", clField("Postal code")?.empty, true);
+// Optional attributes drop out entirely when we have no data, rather than showing blanks.
+check("cl omits paint color when unknown", craigslistFields(bareVehicle).some((f) => f.label === "Paint color"), false);
 
 console.log(failures === 0 ? "\nAll checks passed." : `\n${failures} check(s) failed.`);
 process.exit(failures === 0 ? 0 : 1);

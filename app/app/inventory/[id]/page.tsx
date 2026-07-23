@@ -6,6 +6,7 @@ import { VehicleDetailsCard } from "@/components/vehicle-details-card";
 import { generateListing } from "@/lib/ai";
 import { requireUser } from "@/lib/auth";
 import { facebookPaceFor } from "@/lib/marketplace";
+import { craigslistFields, facebookFields } from "@/lib/marketplace-fields";
 import { checkFacebookListing } from "@/lib/marketplace-rules";
 import { prisma } from "@/lib/prisma";
 import { cn, daysOnLot, dolColor, fullDate, money, STATUS_LABELS } from "@/lib/utils";
@@ -134,6 +135,9 @@ export default async function VehicleDetail({ params }: { params: Promise<{ id: 
                 sold={vehicle.status === "sold"}
                 facebookIssues={facebookIssues}
                 pace={pace}
+                facebookFields={facebookFields(vehicle)}
+                craigslistFields={craigslistFields(vehicle)}
+                photoCount={vehicle.photos.length}
               />
               <div className="border-t border-slate-100 pt-4">
                 <MarkSoldButton vehicleId={vehicle.id} sold={vehicle.status === "sold"} />
