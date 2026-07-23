@@ -181,6 +181,10 @@ export function AddVehicleForm({ templates }: { templates: TemplateOption[] }) {
         cost: Number(form.cost),
         price: Number(form.price),
         description: listing.description,
+        // Whatever templates were picked already shaped this text — save it as-is
+        // so the vehicle page doesn't regenerate generic copy later.
+        facebookCopy: listing.facebook,
+        craigslistCopy: listing.craigslist,
       });
       toast.success("Vehicle added to inventory");
       router.push(`/app/inventory/${id}`);

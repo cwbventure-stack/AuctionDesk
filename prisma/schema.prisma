@@ -96,6 +96,13 @@ model Vehicle {
   transmission       String     @default("") // AUTOMATIC | MANUAL
   fuelType           String     @default("") // GASOLINE | DIESEL | HYBRID | ELECTRIC | ...
   acquiredAt         DateTime
+  // The dealer's saved (possibly hand-edited) copy for each channel, set at
+  // creation from whichever template they picked. Persisted rather than
+  // regenerated on every page load, so it stays stable, stays editable, and is
+  // the exact text the compliance checks in lib/marketplace-rules.ts screen —
+  // not a fresh draft that could differ from what actually gets posted.
+  facebookCopy       String?
+  craigslistCopy     String?
   // When the vehicle was marked sold. Meta expects sold listings down within 24
   // hours, so takedown reminders are driven off this rather than Deal.closedAt —
   // a vehicle can be marked sold without a deal record ever being created.

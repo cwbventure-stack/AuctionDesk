@@ -35,8 +35,12 @@ export default async function VehicleDetail({ params }: { params: Promise<{ id: 
 
   const dol = daysOnLot(vehicle.acquiredAt);
   const listing = await generateListing(vehicle); // mock-mode: instant, deterministic
-  // The dealer's saved (possibly hand-edited) description always wins.
+  // The dealer's saved (possibly hand-edited) copy always wins — set at creation
+  // from whichever template they picked, or edited since. Without this, every
+  // page load would regenerate generic copy from no template at all.
   if (vehicle.description) listing.description = vehicle.description;
+  if (vehicle.facebookCopy) listing.facebook = vehicle.facebookCopy;
+  if (vehicle.craigslistCopy) listing.craigslist = vehicle.craigslistCopy;
 
   // Checked server-side against the copy that will actually be posted, so an
   // edited description is what gets screened.

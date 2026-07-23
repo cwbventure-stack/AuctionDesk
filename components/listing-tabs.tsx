@@ -1,6 +1,6 @@
 "use client";
 
-import { updateVehicleDescription } from "@/app/actions";
+import { updateVehicleCraigslistCopy, updateVehicleDescription, updateVehicleFacebookCopy } from "@/app/actions";
 import { CopyButton } from "@/components/copy-button";
 import { Button, Textarea } from "@/components/ui";
 import type { GeneratedListing } from "@/lib/ai";
@@ -28,7 +28,9 @@ export function ListingTabs({
   // Called with the full updated listing whenever the user edits a tab
   // (used by the Add Vehicle flow so edits are what gets saved).
   onChange?: (l: GeneratedListing) => void;
-  // When set, saving a description edit persists straight to this vehicle.
+  // When set, saving an edit persists straight to this vehicle — description,
+  // Facebook, and Craigslist copy are each their own field, so an edit here is
+  // exactly what the compliance checks screen and what "Copy & open" sends out.
   persistVehicleId?: string;
 }) {
   const [active, setActive] = useState<TabKey>("description");
@@ -54,13 +56,19 @@ export function ListingTabs({
     setCurrent(updated);
     onChange?.(updated);
     setEditing(false);
-    if (persistVehicleId && key === "description") {
+    if (persistVehicleId) {
       setSaving(true);
       try {
-        await updateVehicleDescription(persistVehicleId, draft);
-        toast.success("Description saved", { description: "It'll be used the next time you publish." });
+        if (key === "description") {
+          await updateVehicleDescription(persistVehicleId, draft);
+        } else if (key === "facebook") {
+          await updateVehicleFacebookCopy(persistVehicleId, draft);
+        } else {
+          await updateVehicleCraigslistCopy(persistVehicleId, draft);
+        }
+        toast.success("Saved", { description: "This is what goes out the next time you publish." });
       } catch {
-        toast.error("Couldn't save the description");
+        toast.error("Couldn't save the edit");
       } finally {
         setSaving(false);
       }

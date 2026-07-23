@@ -44,6 +44,11 @@ export async function createVehicle(data: {
   cost: number;
   price: number;
   description: string;
+  // Whatever the dealer had on screen when they hit save — already rendered
+  // from their chosen template, if any. Saved so the vehicle page shows this
+  // exact text instead of regenerating from scratch with no template.
+  facebookCopy?: string;
+  craigslistCopy?: string;
 }) {
   const dealershipId = await requireDealershipId();
 
@@ -85,6 +90,8 @@ export async function createVehicle(data: {
       cost: data.cost,
       price: data.price,
       description: data.description,
+      facebookCopy: data.facebookCopy,
+      craigslistCopy: data.craigslistCopy,
       status: "available",
       acquiredAt: new Date(),
     },
@@ -93,14 +100,30 @@ export async function createVehicle(data: {
   return vehicle.id;
 }
 
-export async function updateVehicleDescription(vehicleId: string, description: string) {
+async function setListingText(
+  vehicleId: string,
+  field: "description" | "facebookCopy" | "craigslistCopy",
+  text: string,
+) {
   const dealershipId = await requireDealershipId();
   const { count } = await prisma.vehicle.updateMany({
     where: { id: vehicleId, dealershipId },
-    data: { description },
+    data: { [field]: text },
   });
   if (count === 0) throw new Error("Vehicle not found");
   revalidatePath(`/app/inventory/${vehicleId}`);
+}
+
+export async function updateVehicleDescription(vehicleId: string, description: string) {
+  await setListingText(vehicleId, "description", description);
+}
+
+export async function updateVehicleFacebookCopy(vehicleId: string, text: string) {
+  await setListingText(vehicleId, "facebookCopy", text);
+}
+
+export async function updateVehicleCraigslistCopy(vehicleId: string, text: string) {
+  await setListingText(vehicleId, "craigslistCopy", text);
 }
 
 export interface VehicleDetailsInput {
