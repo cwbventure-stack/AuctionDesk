@@ -1,3 +1,0 @@
-{
-  "buildCommand": "npm run db:pg:generate && npm run build"
-}
