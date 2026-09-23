@@ -248,16 +248,6 @@ section{padding:104px 0}
 .boundary-box b{color:var(--ink)}
 
 /* ---------- Pricing ---------- */
-.rate-wrap{max-width:820px;margin:0 auto;overflow-x:auto;-webkit-overflow-scrolling:touch;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-1)}
-table.rates{width:100%;min-width:460px;border-collapse:collapse;font-size:.96rem}
-.rates th,.rates td{padding:17px 26px;text-align:left;border-bottom:1px solid var(--line)}
-.rates thead th{background:var(--ink);color:#fff;font-weight:600;font-size:.9rem}
-.rates tbody tr:last-child>*{border-bottom:none}
-.rates tbody th{font-weight:500;color:var(--ink-2)}
-.rates td{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
-.rates tr.highlight>*{background:var(--accent-soft)}
-.rates tr.highlight td{font-family:var(--font-display);font-size:1.25rem}
-.pricing-note{max-width:640px;margin:28px auto 0;text-align:center;color:var(--ink-3);font-size:.95rem}
 
 /* ---------- Service area (rotating arc of tiles) ---------- */
 .area{padding:88px 0 16px}
@@ -396,8 +386,6 @@ footer{margin:12px;padding-top:64px;background:var(--surface);border-radius:var(
   .town{font-size:.85rem;border-radius:22px}
 }
 @media (max-width:560px){
-  table.rates{min-width:0}
-  .rates th,.rates td{padding:14px 16px}
   .form-grid{grid-template-columns:1fr}
   .contact-card{padding:28px 22px 24px}
   .faq{padding:4px 20px}
@@ -423,7 +411,6 @@ footer{margin:12px;padding-top:64px;background:var(--surface);border-radius:var(
       <ul class="nav-links" id="navLinks">
         <li><a href="#included">How We Work</a></li>
         <li><a href="#compliance">Wisconsin Compliance</a></li>
-        <li><a href="#pricing">Pricing</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li class="menu-only"><a href="#contact">Get In Touch</a></li>
       </ul>
@@ -532,48 +519,47 @@ footer{margin:12px;padding-top:64px;background:var(--surface);border-radius:var(
 <section id="included" class="panel" aria-labelledby="included-title">
   <div class="container">
     <div class="section-head">
-      <h2 id="included-title">A plan built around what your lot actually needs.</h2>
-      <p data-reveal style="--rd:.2s">No two dealers get the same plan. This is the mix we build most often. Tell us what's actually slowing your lot down, and we'll shape one around that instead.</p>
+      <h2 id="included-title">One process. Any problem.</h2>
+      <p data-reveal style="--rd:.2s">Every engagement runs the same six steps, whether it's photography and Buyer's Guide prep, listing copy, or something else entirely.</p>
     </div>
     <ol class="steps" data-stagger>
       <li class="step">
-        <span class="step-ico" style="--c:var(--blue);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
+        <span class="step-ico" style="--c:var(--blue);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
         <span class="num" aria-hidden="true">01</span>
-        <h3>Photography</h3>
-        <p>30–40 images in a fixed angle sequence, including the odometer and any damage.</p>
+        <h3>Tell us the problem</h3>
+        <p>Listing copy, photos, compliance paperwork, traffic, whatever's actually slowing your lot down.</p>
       </li>
       <li class="step">
-        <span class="step-ico" style="--c:var(--yellow)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 17v4M17 19h4"/></svg></span>
+        <span class="step-ico" style="--c:var(--yellow)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m14.5 9.5-2 5-5 2 2-5z"/></svg></span>
         <span class="num" aria-hidden="true">02</span>
-        <h3>Hero image</h3>
-        <p>The lead photo gets a clean background so it stands out in search results.</p>
+        <h3>We scope a plan</h3>
+        <p>You get a plan built around your lot, not a one-size-fits-all package.</p>
       </li>
       <li class="step">
-        <span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg></span>
+        <span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8l9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg></span>
         <span class="num" aria-hidden="true">03</span>
-        <h3>Listing copy</h3>
-        <p>Written from the VIN decode and options on the vehicle. You approve the draft.</p>
+        <h3>We get to work</h3>
+        <p>Photography, copy, compliance prep, whatever the plan calls for, on your schedule.</p>
       </li>
       <li class="step">
-        <span class="step-ico" style="--c:var(--ink);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 12l2 2 4-4M9 17h6"/></svg></span>
+        <span class="step-ico" style="--c:var(--ink);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
         <span class="num" aria-hidden="true">04</span>
-        <h3>MV2872 prep</h3>
-        <p>Inspection and test drive recorded on the state form, ready for your review and signature.</p>
+        <h3>You review everything</h3>
+        <p>Nothing goes live, and nothing gets signed, without your sign-off first.</p>
       </li>
       <li class="step">
-        <span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></svg></span>
+        <span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M7 9l5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></span>
         <span class="num" aria-hidden="true">05</span>
-        <h3>Window sticker</h3>
-        <p>Buyer's Guide and feature sheet printed on site, so the vehicle is display-ready.</p>
+        <h3>It goes live</h3>
+        <p>Delivered wherever it needs to land: your inventory system, your listings, your lot.</p>
       </li>
       <li class="step">
-        <span class="step-ico" style="--c:var(--green);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M7 9l5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></span>
+        <span class="step-ico" style="--c:var(--green);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
         <span class="num" aria-hidden="true">06</span>
-        <h3>Live in your DMS</h3>
-        <p>Uploaded to your inventory system by the end of the next business day.</p>
+        <h3>We stick around</h3>
+        <p>Month-to-month, so the plan can change as your lot does.</p>
       </li>
     </ol>
-    <p class="pricing-note">Struggling with listing copy that converts, getting more traffic to listings that are already live, or coordinating more than one location? Tell us what's not working and we'll scope a plan around it.</p>
     <div class="not-included">
       <h3>Not included</h3>
       <ul>
@@ -652,7 +638,7 @@ footer{margin:12px;padding-top:64px;background:var(--surface);border-radius:var(
 <section id="compliance" aria-labelledby="compliance-title">
   <div class="container compliance-grid">
     <div>
-      <h2 id="compliance-title">Wisconsin doesn't use the federal Buyer's Guide.</h2>
+      <h2 id="compliance-title">Compliance paperwork, handled for you.</h2>
       <p class="lede" data-reveal style="--rd:.2s">Wisconsin is one of only two states the FTC's Used Car Rule doesn't apply to. Instead, dealers here complete the state's own <b>MV2872 Buyer's Guide</b>, based on an actual visual inspection and test drive. A vendor printing the federal form isn't giving you the document Wisconsin requires.</p>
       <ul class="req-list" data-stagger>
         <li><span class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Engine size, gauges, and warning devices</li>
@@ -665,34 +651,8 @@ footer{margin:12px;padding-top:64px;background:var(--surface);border-radius:var(
       <div class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg></div>
       <p style="margin-bottom:14px"><b>Who's responsible for the disclosure?</b> You are, as the dealer. That's how it should be.</p>
       <p>We collect and record inspection findings on site. You review, verify, and sign every guide. We never certify a vehicle's condition. All listing copy is delivered as a draft for your approval before publishing, since dealer advertising is regulated under Wisconsin law.</p>
+      <p>Buyer's Guide prep is one example of what we handle end to end. If something else on your lot needs the same kind of attention, it's the same conversation.</p>
     </div>
-  </div>
-</section>
-
-<!-- ============ PRICING ============ -->
-<section id="pricing" class="panel" aria-labelledby="pricing-title">
-  <div class="container">
-    <div class="section-head">
-      <h2 id="pricing-title">Clear pricing for our most common plan.</h2>
-      <p data-reveal style="--rd:.2s">Billed semi-monthly, month-to-month, 30 days' written notice either way. Anything more custom gets a quote scoped to it.</p>
-    </div>
-    <div class="rate-wrap" data-reveal style="--rd:.1s">
-      <table class="rates">
-        <thead>
-          <tr><th scope="col">Service</th><th scope="col">Rate</th></tr>
-        </thead>
-        <tbody>
-          <tr class="highlight"><th scope="row">Front-Line Ready package, per unit</th><td>$40</td></tr>
-          <tr><th scope="row">Monthly minimum</th><td>15 units</td></tr>
-          <tr><th scope="row">Overage above minimum</th><td>$40/unit, same rate</td></tr>
-          <tr><th scope="row">Rush, same-day turnaround</th><td>+$15/unit</td></tr>
-          <tr><th scope="row">Photos only, no Buyer's Guide</th><td>$30/unit</td></tr>
-          <tr><th scope="row">Buyer's Guide prep only</th><td>$15/unit</td></tr>
-          <tr><th scope="row">Multi-location, 40+ units/month</th><td>$36/unit</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="pricing-note">New dealers can start with a small pilot batch at a reduced rate before committing to the full agreement. Ask for details when you reach out.</p>
   </div>
 </section>
 
@@ -733,7 +693,7 @@ footer{margin:12px;padding-top:64px;background:var(--surface);border-radius:var(
           </button>
         </h3>
         <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div>
-          <p>No. It's month-to-month with 30 days' written notice on either side. There's a 15-unit monthly minimum on the standard package, billed whether or not all 15 are delivered that month.</p>
+          <p>No. Every engagement is month-to-month with 30 days' written notice on either side. Minimums and billing get set when we scope your plan.</p>
         </div></div>
       </div>
       <div class="faq-item">
@@ -796,8 +756,7 @@ footer{margin:12px;padding-top:64px;background:var(--surface);border-radius:var(
         <ul>
           <li><a href="#included">How we work</a></li>
           <li><a href="#compliance">Wisconsin compliance</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#faq">FAQ</a></li>
+            <li><a href="#faq">FAQ</a></li>
         </ul>
       </nav>
       <nav aria-label="Legal">
