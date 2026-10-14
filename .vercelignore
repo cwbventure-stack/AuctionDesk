@@ -1,0 +1,6 @@
+# Source and tooling: only the built static files get deployed.
+src/
+build.mjs
+serve.mjs
+.claude/
+prisma/

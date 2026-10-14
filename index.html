@@ -3,421 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AuctionDesk Lot Services | Custom Lot Services for Fox Valley, WI Dealers</title>
-<meta name="description" content="Custom lot services for independent used car dealers in the Fox Valley. Photography, listing copy, Wisconsin MV2872 Buyer's Guide prep, and whatever else is actually slowing your lot down.">
-<meta name="theme-color" content="#f3f3f0">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' fill='none'%3E%3Crect width='36' height='36' rx='10' fill='%23111316'/%3E%3Cpath d='M9 14v-3a2 2 0 0 1 2-2h3M22 9h3a2 2 0 0 1 2 2v3M27 22v3a2 2 0 0 1-2 2h-3M14 27h-3a2 2 0 0 1-2-2v-3' stroke='%23ff5a1f' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='m13.5 18.5 3 3 6-6.5' stroke='%23fff' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<title>Automotive Marketing for Dealers and Shops | AuctionDesk</title>
+<meta name="description" content="SEO, websites, ads, reviews, and listing content for car dealers, auto repair shops, body shops, detailers, and tire shops. Custom plans, month-to-month.">
+<link rel="canonical" href="https://www.auctiondesk.net/">
+<meta name="theme-color" content="#08090c">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AuctionDesk">
+<meta property="og:title" content="AuctionDesk | Automotive marketing built around your actual problem">
+<meta property="og:description" content="SEO, websites, ads, reviews, and listing content for car dealers, auto repair shops, body shops, detailers, and tire shops. Custom plans, month-to-month.">
+<meta property="og:url" content="https://www.auctiondesk.net/">
+<meta property="og:image" content="https://www.auctiondesk.net/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
 <script>document.documentElement.classList.add('js')</script>
-<style>
-/* ---------- Design tokens ---------- */
-:root{
-  --bg:#f3f3f0;
-  --surface:#fff;
-  --tint:#f7f7f4;
-  --ink:#111316;
-  --ink-2:#3f454d;
-  --ink-3:#5f656e;
-  --line:#e4e4de;
-  --accent:#ff5a1f;        /* fills only; pair with --ink text */
-  --accent-ink:#c2410c;    /* accent for text on light backgrounds */
-  --accent-soft:#fff1ea;
-  --blue:#3d8bfd;
-  --yellow:#ffc83d;
-  --green:#23b26d;
-  --error:#b3261e;
-  --success:#1e7f4f;
-  --r-sm:10px;
-  --r-md:18px;
-  --r-lg:28px;
-  --shadow-1:0 1px 2px rgba(17,19,22,.05),0 6px 16px rgba(17,19,22,.06);
-  --shadow-2:0 2px 6px rgba(17,19,22,.06),0 18px 40px rgba(17,19,22,.12);
-  --font-display:"Inter Tight","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --font-body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --ease:cubic-bezier(.2,.7,.2,1);
-  --max-w:1160px;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:96px}
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation:none!important;transition:none!important}
-}
-body{
-  font-family:var(--font-body);font-size:16px;line-height:1.6;
-  color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;
-}
-img,svg{display:block}
-a{color:inherit}
-button{font:inherit;cursor:pointer}
-:focus-visible{outline:3px solid var(--accent-ink);outline-offset:2px;border-radius:6px}
-.dark :focus-visible{outline-color:var(--accent)}
-.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
-.skip-link{
-  position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;
-  padding:12px 20px;z-index:200;border-radius:0 0 8px 0;
-}
-.skip-link:focus{left:0}
-.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-/* ---------- Typography ---------- */
-h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.05;letter-spacing:-.035em}
-h1{font-size:clamp(2.5rem,6vw,4.4rem)}
-h2{font-size:clamp(2rem,4.2vw,3.1rem)}
-h3{font-size:1.15rem;letter-spacing:-.015em;line-height:1.25}
-.section-head{max-width:680px;margin:0 auto 56px;text-align:center}
-.section-head p{color:var(--ink-3);margin-top:16px;font-size:1.08rem}
-.lede{color:var(--ink-3);margin-top:18px;max-width:54ch;font-size:1.05rem}
-.lede b{color:var(--ink)}
-
-/* ---------- Motion helpers (JS adds .in when an element scrolls into view) ---------- */
-@keyframes draw{from{stroke-dasharray:1;stroke-dashoffset:1}to{stroke-dasharray:1;stroke-dashoffset:0}}
-@keyframes pop{from{opacity:0;transform:scale(.6)}}
-@keyframes fade{from{opacity:0}}
-@keyframes float{50%{transform:translateY(-7px)}}
-.js [data-reveal]{transition:opacity .8s var(--ease) var(--rd,0s),transform .8s var(--ease) var(--rd,0s)}
-.js [data-reveal]:not(.in){opacity:0;transform:translateY(24px)}
-.js [data-stagger]>*{transition:opacity .6s var(--ease) calc(var(--i,0)*90ms),transform .6s var(--ease) calc(var(--i,0)*90ms)}
-.js [data-stagger]:not(.in)>*{opacity:0;transform:translateY(14px)}
-.blur-in .w{display:inline-block;transition:opacity .8s var(--ease),filter .8s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--i)*60ms)}
-.js .blur-in:not(.split){opacity:0}
-.blur-in:not(.in) .w{opacity:0;filter:blur(12px);transform:translateY(.25em)}
-
-/* ---------- Buttons ---------- */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  min-height:48px;padding:12px 24px;border-radius:999px;border:1px solid transparent;
-  font-weight:600;font-size:.98rem;text-decoration:none;white-space:nowrap;
-  transition:transform .2s var(--ease),box-shadow .2s,background-color .2s,border-color .2s;
-}
-.btn:hover{transform:translateY(-1px)}
-.btn:active{transform:scale(.98)}
-.btn svg{transition:transform .2s var(--ease)}
-.btn:hover svg{transform:translateX(3px)}
-.btn-accent{background:var(--accent);color:var(--ink)}
-.btn-accent:hover{box-shadow:0 8px 24px rgba(255,90,31,.35)}
-.btn-dark{background:var(--ink);color:#fff}
-.btn-dark:hover{background:#2a2e34}
-.btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
-.btn-ghost:hover{border-color:#c9c9c2}
-
-/* ---------- Header (floating pill) ---------- */
-.site-header{position:fixed;top:24px;left:0;right:0;z-index:100;padding:0 24px;pointer-events:none}
-.nav{
-  pointer-events:auto;position:relative;max-width:980px;margin:0 auto;height:60px;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 8px 0 16px;
-  background:rgba(255,255,255,.82);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);
-  border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow-1);transition:box-shadow .3s;
-}
-.scrolled .nav{box-shadow:var(--shadow-2)}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
-.brand-mark{width:32px;height:32px;flex-shrink:0}
-.brand-name{font-family:var(--font-display);font-size:1.05rem;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
-.brand-name span{color:var(--ink-3);font-weight:500}
-.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
-.nav-links a{
-  display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;border-radius:999px;
-  color:var(--ink-2);text-decoration:none;font-size:.92rem;font-weight:500;transition:background-color .15s,color .15s;
-}
-.nav-links a:hover{color:var(--ink);background:var(--tint)}
-.nav-cta{display:flex;align-items:center;gap:6px}
-.nav-cta .btn{min-height:44px;padding:9px 20px;font-size:.92rem}
-.nav-toggle{
-  display:none;background:none;border:none;width:44px;height:44px;border-radius:50%;
-  align-items:center;justify-content:center;color:var(--ink);
-}
-.nav-toggle:hover{background:var(--tint)}
-@media (max-width:920px){
-  .nav-links{display:none}
-  .nav-toggle{display:inline-flex}
-  .nav-open .nav-links{
-    display:flex;flex-direction:column;align-items:stretch;gap:2px;
-    position:absolute;top:calc(100% + 8px);left:0;right:0;padding:8px;
-    background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow-2);
-  }
-  .nav-open .nav-links a{min-height:48px;padding:10px 16px}
-}
-.nav-links .menu-only{display:none}
-@media (max-width:520px){
-  .site-header{top:16px;padding:0 16px}
-  .brand-name span{display:none}
-  .nav-cta .btn{display:none}
-  .nav-links .menu-only{display:block}
-}
-
-/* ---------- Layout ---------- */
-section{padding:104px 0}
-.panel{background:var(--surface);border-radius:var(--r-lg);margin:0 12px}
-.panel+.panel{margin-top:12px}
-.dark{
-  background:radial-gradient(700px 420px at 0% 0%,rgba(255,90,31,.22),transparent 60%),var(--ink);
-  color:#fff;
-}
-
-/* ---------- Hero ---------- */
-.hero{
-  margin-top:12px;padding:116px 0 96px;text-align:center;overflow:hidden;
-  background:radial-gradient(800px 380px at 50% 0%,rgba(255,90,31,.07),transparent 70%),var(--surface);
-}
-.hero h1{max-width:23ch;margin:0 auto 20px}
-.hero-sub{max-width:56ch;margin:0 auto 32px;color:var(--ink-3);font-size:1.12rem}
-.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.hero-points{
-  list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;
-  margin-top:36px;font-size:.92rem;color:var(--ink-2);
-}
-.hero-points li{display:flex;gap:8px;align-items:center}
-.hero-points svg{color:var(--accent-ink);flex-shrink:0}
-
-/* Hero connector diagram: SVG lines in a 1000x340 space, HTML tiles positioned in the same space */
-.flow{position:relative;max-width:880px;margin:0 auto 28px;aspect-ratio:1000/340;container-type:inline-size}
-.flow svg.lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.flow .lines path{fill:none;stroke:#d7d7d0;stroke-width:2;animation:draw 1s var(--ease) var(--d) both}
-.flow .lines circle{fill:var(--accent);transform-box:fill-box;transform-origin:center;animation:pop .4s var(--ease) var(--d) both}
-.node{
-  --s:6.4cqw;position:absolute;width:var(--s);aspect-ratio:1;
-  left:calc(var(--x) * .1%);top:calc(var(--y) / 3.4 * 1%);
-  margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2);
-}
-.tile,.step-ico{
-  border-radius:24%;display:grid;place-items:center;
-  background:var(--c,#fff);color:var(--ic,var(--ink));
-  border:1px solid rgba(17,19,22,.07);
-  box-shadow:0 1px 2px rgba(17,19,22,.06),0 12px 28px rgba(17,19,22,.13);
-}
-.tile{width:100%;height:100%;animation:pop .6s var(--ease) var(--d) both,float var(--fd,6s) ease-in-out calc(var(--d) + .6s) infinite}
-.node:nth-child(odd) .tile{--fd:7.5s}
-.tile svg,.step-ico svg{width:44%;height:44%}
-.node span{
-  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);white-space:nowrap;
-  font-size:clamp(10px,1.3cqw,13px);font-weight:600;color:var(--ink-3);animation:fade .5s var(--d) both;
-}
-.hub .tile{background:var(--accent);border-radius:28%;animation-name:pop,none}
-.hub svg path{animation:draw .6s var(--ease) 1.5s both}
-.hub::before{
-  content:"";position:absolute;inset:-14%;border-radius:32%;border:2px solid var(--accent);
-  opacity:0;animation:pulse 2.8s ease-out 2.1s infinite;
-}
-@keyframes pulse{0%{opacity:.55;transform:scale(.85)}100%{opacity:0;transform:scale(1.25)}}
-@media (max-width:560px){.node span{display:none}}
-
-/* ---------- What's included (six-step row, same tiles as the hero) ---------- */
-.steps{list-style:none;position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
-.steps::before{
-  content:"";position:absolute;top:31px;left:calc(100% / 12);right:calc(100% / 12);height:2px;
-  background:repeating-linear-gradient(90deg,#d7d7d0 0 6px,transparent 6px 12px);
-  transform-origin:left;transition:transform 1.4s var(--ease) .1s;
-}
-.js .steps:not(.in)::before{transform:scaleX(0)}
-.steps::after{
-  content:"";position:absolute;top:27px;left:calc(100% / 12);width:10px;height:10px;margin-left:-5px;
-  border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,90,31,.18);opacity:0;
-}
-.steps.in::after{animation:travel 7s ease-in-out 1.6s infinite}
-@keyframes travel{0%{left:calc(100% / 12);opacity:0}6%,94%{opacity:1}100%{left:calc(100% - 100% / 12);opacity:0}}
-.step{position:relative;text-align:center}
-.step-ico{position:relative;z-index:1;width:64px;height:64px;margin:0 auto 18px;transition:transform .25s var(--ease)}
-.steps.in .step-ico{animation:pop .5s var(--ease) calc(var(--i) * .12s + .15s) backwards}
-.step:hover .step-ico{transform:translateY(-4px)}
-.step .num{display:block;margin-bottom:4px;font-size:.75rem;font-weight:700;letter-spacing:.08em;color:var(--accent-ink)}
-.step h3{font-size:1.02rem;margin-bottom:6px}
-.step p{font-size:.88rem;line-height:1.5;color:var(--ink-3)}
-.not-included{
-  display:grid;grid-template-columns:150px 1fr;gap:12px 28px;align-items:start;
-  max-width:980px;margin:64px auto 0;padding:24px 28px;
-  background:var(--tint);border:1px solid var(--line);border-radius:var(--r-md);
-}
-.not-included h3{padding-top:2px;font-family:var(--font-body);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
-.not-included ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 28px}
-.not-included li{position:relative;padding-left:24px;font-size:.9rem;line-height:1.5;color:var(--ink-3)}
-.not-included li::before{
-  content:"";position:absolute;left:0;top:3px;width:15px;height:15px;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c2410c' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E") center/contain no-repeat;
-}
-.not-included b{font-weight:600;color:var(--ink)}
-
-/* ---------- Compliance ---------- */
-.compliance-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
-.req-list{list-style:none;display:grid;gap:12px;margin-top:24px}
-.req-list li{display:flex;gap:12px;align-items:center;font-size:.98rem;color:var(--ink-2)}
-.req-list .ck{width:26px;height:26px;flex-shrink:0;border-radius:8px;display:grid;place-items:center;background:var(--ink);color:#fff}
-.boundary-box{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:30px;box-shadow:var(--shadow-1);color:var(--ink-2)}
-.boundary-box .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--accent);color:var(--ink);margin-bottom:18px}
-.boundary-box b{color:var(--ink)}
-
-/* ---------- Pricing ---------- */
-
-/* ---------- Service area (rotating arc of tiles) ---------- */
-.area{padding:88px 0 16px}
-.area .section-head{margin-bottom:12px}
-.ring-wrap{
-  --R:560px;--T:150px;position:relative;height:250px;overflow:hidden;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent),linear-gradient(#000 62%,transparent);
-  -webkit-mask-composite:source-in;
-  mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent),linear-gradient(#000 62%,transparent);
-  mask-composite:intersect;
-}
-.ring{
-  position:absolute;left:50%;top:12px;width:calc(var(--R) * 2);height:calc(var(--R) * 2);
-  margin-left:calc(var(--R) * -1);animation:spin 90s linear infinite;
-}
-.town{
-  position:absolute;left:50%;top:0;width:var(--T);height:var(--T);margin-left:calc(var(--T) / -2);
-  transform-origin:50% var(--R);transform:rotate(calc(var(--i) * 30deg));
-  display:grid;place-items:center;align-content:center;gap:10px;
-  background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow-1);
-  font-family:var(--font-display);font-weight:600;font-size:1rem;letter-spacing:-.01em;
-}
-.town svg{color:var(--accent-ink)}
-@keyframes spin{to{transform:rotate(-360deg)}}
-
-/* ---------- FAQ ---------- */
-.faq{max-width:780px;margin:0 auto;padding:6px 28px;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg)}
-.faq-item{border-bottom:1px solid var(--line)}
-.faq-item:last-child{border-bottom:none}
-.faq-q{
-  width:100%;min-height:56px;display:flex;justify-content:space-between;align-items:center;gap:18px;
-  padding:22px 0;background:none;border:none;text-align:left;
-  font-family:var(--font-body);font-size:1.03rem;font-weight:600;color:var(--ink);
-}
-.faq-q .pm{
-  width:32px;height:32px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;
-  background:var(--tint);color:var(--ink-2);transition:transform .25s var(--ease),background-color .2s;
-}
-.faq-q:hover .pm{background:#ecece6}
-.faq-q[aria-expanded="true"] .pm{transform:rotate(45deg);background:var(--accent);color:var(--ink)}
-.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease)}
-.faq-a>div{overflow:hidden}
-.faq-a p{padding:0 0 24px;color:var(--ink-3);font-size:.97rem;max-width:65ch}
-.faq-item.open .faq-a{grid-template-rows:1fr}
-.faq-more{margin-top:28px;text-align:center;color:var(--ink-3)}
-.faq-more a{font-weight:600;color:var(--accent-ink)}
-
-/* ---------- Contact ---------- */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.contact h2{max-width:16ch}
-.contact .lede{color:#b9bdc4}
-.facts{list-style:none;display:grid;gap:12px;margin-top:28px}
-.facts li{display:flex;gap:12px;align-items:center;color:#e3e5e8}
-.facts svg{color:var(--accent);flex-shrink:0}
-.contact-card{background:var(--surface);color:var(--ink);border-radius:var(--r-lg);box-shadow:var(--shadow-2);padding:34px 32px 30px}
-.contact-card h2{font-size:1.6rem;margin-bottom:6px}
-.contact-card .form-sub{color:var(--ink-3);font-size:.94rem;margin-bottom:24px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.field{display:flex;flex-direction:column;gap:6px}
-.field-full{grid-column:1/-1}
-.field label{font-size:.86rem;font-weight:600;color:var(--ink-2)}
-.field label .req{color:var(--error)}
-.field input,.field textarea{
-  font:inherit;width:100%;min-height:48px;padding:10px 14px;
-  border:1.5px solid var(--line);border-radius:var(--r-sm);background:#fff;color:var(--ink);
-  transition:border-color .15s,box-shadow .15s;
-}
-.field textarea{min-height:88px;resize:vertical}
-.field input:hover,.field textarea:hover{border-color:#c9c9c2}
-.field input:focus,.field textarea:focus{border-color:var(--ink);outline:none;box-shadow:0 0 0 3px rgba(255,90,31,.25)}
-.field .error-msg{display:none;font-size:.82rem;color:var(--error);font-weight:500}
-.field.invalid input,.field.invalid textarea{border-color:var(--error)}
-.field.invalid .error-msg{display:flex;align-items:center;gap:5px}
-.contact-submit{width:100%;margin-top:22px}
-.contact-submit:disabled{opacity:.7;cursor:progress;transform:none}
-.contact-fineprint{margin-top:14px;font-size:.78rem;color:var(--ink-3);text-align:center}
-.contact-fineprint a{color:inherit}
-.form-success{display:none;text-align:center;padding:34px 10px}
-.form-success.show{display:block}
-.form-success .success-ring{
-  width:64px;height:64px;border-radius:50%;background:#e7f4ec;color:var(--success);
-  display:flex;align-items:center;justify-content:center;margin:0 auto 18px;
-}
-.form-success h2{font-size:1.4rem;margin-bottom:8px}
-.form-success p{color:var(--ink-3);font-size:.95rem}
-.form-error-banner{display:none;background:#fdeceb;color:var(--error);border-radius:var(--r-sm);padding:12px 16px;font-size:.88rem;margin-bottom:18px}
-.form-error-banner.show{display:block}
-
-/* ---------- Footer ---------- */
-footer{margin:12px;padding-top:64px;background:var(--surface);border-radius:var(--r-lg);overflow:hidden;font-size:.92rem;container-type:inline-size}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;margin-bottom:44px}
-.footer-grid h3{font-family:var(--font-body);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px}
-.footer-grid ul{list-style:none;display:grid;gap:2px}
-.footer-grid a{display:inline-flex;align-items:center;min-height:38px;color:var(--ink-2);text-decoration:none}
-.footer-grid a:hover{color:var(--accent-ink)}
-.footer-about p{margin-top:16px;max-width:40ch;color:var(--ink-3)}
-.footer-legal{
-  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  padding-top:24px;border-top:1px solid var(--line);font-size:.82rem;color:var(--ink-3);
-}
-.footer-legal a{color:inherit}
-.wordmark{
-  margin:28px 0 -.1em;text-align:center;white-space:nowrap;user-select:none;
-  font-family:var(--font-display);font-weight:700;font-size:17.4cqw;line-height:.9;letter-spacing:-.065em;color:var(--accent);
-  transition:filter 1.4s var(--ease),opacity 1.4s var(--ease),transform 1.4s var(--ease);
-}
-.js .wordmark:not(.in){filter:blur(24px);opacity:0;transform:translateY(30%)}
-
-/* ---------- Responsive ---------- */
-@media (max-width:1000px){
-  .compliance-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
-  .steps{grid-template-columns:repeat(3,1fr);row-gap:40px}
-  .steps::before,.steps::after{display:none}
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .footer-about{grid-column:1/-1}
-}
-@media (max-width:720px){
-  section{padding:76px 0}
-  .hero{padding:112px 0 72px}
-  .panel{margin:0 8px}
-  .hero.panel,.panel+.panel{margin-top:8px}
-  footer{margin:8px}
-  .container{padding:0 18px}
-  /* steps become a vertical list, joined tile-to-tile by a dashed line */
-  .steps{grid-template-columns:1fr;row-gap:24px}
-  .step{display:grid;grid-template-columns:56px 1fr;column-gap:16px;text-align:left}
-  .step-ico{grid-row:1/4;width:56px;height:56px;margin:0}
-  .step:not(:last-child)::after{
-    content:"";position:absolute;left:27px;top:62px;bottom:-18px;width:2px;
-    background:repeating-linear-gradient(180deg,#d7d7d0 0 6px,transparent 6px 12px);
-  }
-  .not-included{grid-template-columns:1fr;padding:22px}
-  .not-included ul{grid-template-columns:1fr}
-  .area{padding:64px 0 8px}
-  .ring-wrap{--R:360px;--T:112px;height:196px}
-  .town{font-size:.85rem;border-radius:22px}
-}
-@media (max-width:560px){
-  .form-grid{grid-template-columns:1fr}
-  .contact-card{padding:28px 22px 24px}
-  .faq{padding:4px 20px}
-  .footer-grid{grid-template-columns:1fr;gap:28px}
-}
-</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.auctiondesk.net/#organization","name":"AuctionDesk","legalName":"CWB Venture, LLC","url":"https://www.auctiondesk.net/","logo":"https://www.auctiondesk.net/assets/logo.png","description":"Marketing and merchandising services for automotive businesses: SEO and Google Business Profile, website design, advertising, social media, review management, and vehicle listing content.","address":{"@type":"PostalAddress","addressRegion":"WI","addressCountry":"US"},"areaServed":{"@type":"Country","name":"United States"},"knowsAbout":["Automotive marketing","Automotive SEO","Google Business Profile","Car dealership marketing","Auto repair shop marketing","Automotive website design","Review management","Vehicle listing content"]},{"@type":"WebPage","@id":"https://www.auctiondesk.net/#webpage","url":"https://www.auctiondesk.net/","name":"Automotive Marketing for Dealers and Shops | AuctionDesk","description":"SEO, websites, ads, reviews, and listing content for car dealers, auto repair shops, body shops, detailers, and tire shops. Custom plans, month-to-month.","isPartOf":{"@id":"https://www.auctiondesk.net/#website"},"about":{"@id":"https://www.auctiondesk.net/#organization"}},{"@type":"WebSite","@id":"https://www.auctiondesk.net/#website","url":"https://www.auctiondesk.net/","name":"AuctionDesk","publisher":{"@id":"https://www.auctiondesk.net/#organization"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What kinds of automotive businesses do you work with?","acceptedAnswer":{"@type":"Answer","text":"Independent and used car dealers, auto repair shops, body and collision shops, detailers, and tire shops. If your business sells or services vehicles and you're not sure you fit, ask."}},{"@type":"Question","name":"Do you work with businesses outside Wisconsin?","acceptedAnswer":{"@type":"Answer","text":"Yes. SEO, websites, ads, social media, review management, and listing copy are all done remotely, for automotive businesses anywhere in the US. On-site work like vehicle photography is available in Wisconsin."}},{"@type":"Question","name":"How much does it cost?","acceptedAnswer":{"@type":"Answer","text":"It depends on what we're solving. After a short conversation, we send a written scope with the price before any work starts, so there are no surprise fees."}},{"@type":"Question","name":"Is there a long-term contract?","acceptedAnswer":{"@type":"Answer","text":"No. Every engagement is month-to-month with 30 days' written notice on either side."}},{"@type":"Question","name":"Can you guarantee first-page rankings on Google?","acceptedAnswer":{"@type":"Answer","text":"No, and be wary of anyone who does. Google decides rankings. What we can promise is the work that earns them: an accurate Google Business Profile, a properly built website, and steady, useful content, with plain reporting on what's changing."}},{"@type":"Question","name":"Do I have to sign up for everything?","acceptedAnswer":{"@type":"Answer","text":"No. Plenty of businesses start with one service, like cleaning up their Google Business Profile or rewriting their listings, and add more only if it makes sense."}}]}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<!-- ============ HEADER ============ -->
 <header class="site-header" id="header">
   <div class="nav">
-    <a class="brand" href="#" aria-label="AuctionDesk Lot Services, home">
+    <a class="brand" href="/" aria-label="AuctionDesk home">
       <svg class="brand-mark" viewBox="0 0 36 36" fill="none" aria-hidden="true">
         <rect width="36" height="36" rx="10" fill="#111316"/>
         <path d="M9 14v-3a2 2 0 0 1 2-2h3M22 9h3a2 2 0 0 1 2 2v3M27 22v3a2 2 0 0 1-2 2h-3M14 27h-3a2 2 0 0 1-2-2v-3" stroke="#ff5a1f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="m13.5 18.5 3 3 6-6.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <span class="brand-name">AuctionDesk <span>Lot Services</span></span>
+      <span class="brand-name">AuctionDesk</span>
     </a>
     <nav aria-label="Primary">
       <ul class="nav-links" id="navLinks">
-        <li><a href="#included">How We Work</a></li>
-        <li><a href="#compliance">An Example</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li class="menu-only"><a href="#contact">Get In Touch</a></li>
+        <li class="has-menu">
+          <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-services">Services <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="menu" id="menu-services">
+            <a href="/services/automotive-seo"><b>SEO & Google Business Profile</b><span>Show up on Google Search and Maps</span></a>
+            <a href="/services/automotive-website-design"><b>Website Design</b><span>Fast sites that turn visits into calls</span></a>
+            <a href="/services/automotive-advertising"><b>Ads, Social & Reviews</b><span>Leads now, and reviews that close them</span></a>
+            <a href="/services/vehicle-listing-content"><b>Listing Photos & Copy</b><span>Inventory listings worth clicking</span></a>
+            <a class="menu-all" href="/services">All services <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </li>
+        <li class="has-menu">
+          <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-industries">Who We Serve <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="menu" id="menu-industries">
+            <a href="/industries/car-dealers"><b>Car Dealers</b><span>Independent and used car dealers</span></a>
+            <a href="/industries/auto-repair-shops"><b>Auto Repair Shops</b><span>General and specialty repair</span></a>
+            <a href="/industries/auto-body-shops"><b>Body & Collision Shops</b><span>Collision, paint and body repair</span></a>
+            <a href="/industries/detailing-and-tire-shops"><b>Detailers & Tire Shops</b><span>Detailing, coatings and tires</span></a>
+            <a class="menu-all" href="/industries">All business types <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/about">About</a></li>
+        <li class="menu-only"><a href="/contact">Get In Touch</a></li>
       </ul>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-dark" href="#contact">Get In Touch</a>
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+      <a class="btn btn-light" href="/contact">Get In Touch</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg>
       </button>
     </div>
@@ -425,11 +76,9 @@ footer{margin:12px;padding-top:64px;background:var(--surface);border-radius:var(
 </header>
 
 <main id="main">
-
 <!-- ============ HERO ============ -->
 <section class="hero panel" aria-labelledby="hero-title">
   <div class="container">
-    <!-- Decorative: the six steps of the service feeding into one finished listing -->
     <div class="flow" aria-hidden="true">
       <svg class="lines" viewBox="0 0 1000 340">
         <path pathLength="1" style="--d:.2s" d="M440 170H130"/>
@@ -444,157 +93,186 @@ footer{margin:12px;padding-top:64px;background:var(--surface);border-radius:var(
         <circle style="--d:1.05s" cx="700" cy="284" r="4"/>
       </svg>
       <div class="node" style="--x:120;--y:170;--s:9cqw;--d:.8s">
-        <div class="tile" style="--c:var(--blue);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div>
-        <span>Photos</span>
+        <span class="tile" style="--c:var(--blue);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+        <span class="label">Local SEO</span>
       </div>
       <div class="node" style="--x:232;--y:72;--d:.95s">
-        <div class="tile" style="--c:var(--yellow)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 17v4M17 19h4"/></svg></div>
-        <span>Hero shot</span>
+        <span class="tile" style="--c:var(--yellow);--ic:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-2.9-5.4 2.9 1.1-6L3.2 9.4l6.1-.8z"/></svg></span>
+        <span class="label">Reviews</span>
       </div>
       <div class="node" style="--x:252;--y:280;--d:1.1s">
-        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg></div>
-        <span>Listing copy</span>
+        <span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
+        <span class="label">Listing content</span>
       </div>
       <div class="node" style="--x:768;--y:74;--d:.95s">
-        <div class="tile" style="--c:var(--ink);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 12l2 2 4-4M9 17h6"/></svg></div>
-        <span>MV2872 Buyer's Guide</span>
+        <span class="tile" style="--c:#f3f4f6;--ic:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span>
+        <span class="label">Website</span>
       </div>
       <div class="node" style="--x:880;--y:170;--s:9cqw;--d:.8s">
-        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></svg></div>
-        <span>Window sticker</span>
+        <span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15 9a3 3 0 0 1 0 6M18 6a7 7 0 0 1 0 12"/></svg></span>
+        <span class="label">Ads</span>
       </div>
       <div class="node" style="--x:758;--y:284;--d:1.1s">
-        <div class="tile" style="--c:var(--green);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M7 9l5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></div>
-        <span>Live in your DMS</span>
+        <span class="tile" style="--c:var(--green);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+        <span class="label">Social</span>
       </div>
       <div class="node hub" style="--x:500;--y:170;--s:12cqw;--d:0s">
         <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M20 6 9 17l-5-5"/></svg></div>
       </div>
     </div>
-
-    <h1 id="hero-title" class="blur-in">Every day your inventory sits unlisted is money burned.</h1>
-    <p class="hero-sub" data-reveal style="--rd:.35s">Every dealer's bottleneck is different. We build a plan around yours, whether that's photography, listing copy that converts, or Wisconsin Buyer's Guide prep, scoped to what's actually slowing your lot down.</p>
+    <h1 id="hero-title" class="blur-in">Automotive marketing built around the problem you actually have.</h1>
+    <p class="hero-sub" data-reveal style="--rd:.35s">SEO, websites, ads, reviews, and listing content for car dealers, repair shops, body shops, detailers, and tire shops. Tell us what's slowing you down and we'll scope a plan around it.</p>
     <div class="hero-ctas" data-reveal style="--rd:.5s">
-      <a class="btn btn-accent" href="#contact">Get In Touch
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a class="btn btn-ghost" href="#included">See how we work</a>
+      <a class="btn btn-accent" href="/contact">Get In Touch <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-ghost" href="/services">See our services</a>
     </div>
     <ul class="hero-points" data-reveal style="--rd:.65s">
-      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Built around what's actually slowing your lot down</li>
-      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Month-to-month, 30 days' notice to cancel</li>
-      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>You review and sign every disclosure</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Custom plans, not packages</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Month-to-month, 30 days' notice</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>You approve everything first</li>
     </ul>
   </div>
 </section>
 
-<!-- ============ SERVICE AREA ============ -->
-<section class="area" aria-labelledby="area-title">
+<!-- ============ WHO WE SERVE ============ -->
+<section class="ring-section" aria-labelledby="serve-title">
   <div class="container">
     <div class="section-head">
-      <h2 id="area-title">Serving independent lots across the Fox Valley</h2>
-      <p data-reveal style="--rd:.2s">Outagamie, Winnebago, and Calumet counties.</p>
+      <h2 id="serve-title">For every kind of automotive business</h2>
+      <p data-reveal style="--rd:.2s"><a href="/industries/car-dealers">Car dealers</a>, <a href="/industries/auto-repair-shops">repair shops</a>, <a href="/industries/auto-body-shops">body and collision shops</a>, <a href="/industries/detailing-and-tire-shops">detailers and tire shops</a>.</p>
     </div>
   </div>
   <div class="ring-wrap" aria-hidden="true">
     <div class="ring">
-      <div class="town" style="--i:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Appleton</div>
-      <div class="town" style="--i:1"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Neenah</div>
-      <div class="town" style="--i:2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Menasha</div>
-      <div class="town" style="--i:3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Kaukauna</div>
-      <div class="town" style="--i:4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Little Chute</div>
-      <div class="town" style="--i:5"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Grand Chute</div>
-      <div class="town" style="--i:6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Appleton</div>
-      <div class="town" style="--i:7"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Neenah</div>
-      <div class="town" style="--i:8"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Menasha</div>
-      <div class="town" style="--i:9"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Kaukauna</div>
-      <div class="town" style="--i:10"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Little Chute</div>
-      <div class="town" style="--i:11"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Grand Chute</div>
+      <div class="ring-tile" style="--i:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16v-3l2.2-5A2 2 0 0 1 7 7h10a2 2 0 0 1 1.8 1l2.2 5v3a1 1 0 0 1-1 1h-1M5 17H4a1 1 0 0 1-1-1M3 13h18M9 17h6"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>Car dealers</div>
+      <div class="ring-tile" style="--i:1"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Repair shops</div>
+      <div class="ring-tile" style="--i:2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>Body shops</div>
+      <div class="ring-tile" style="--i:3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 17v4M17 19h4"/></svg>Detailers</div>
+      <div class="ring-tile" style="--i:4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v5.5M12 15.5V21M3 12h5.5M15.5 12H21"/></svg>Tire shops</div>
+      <div class="ring-tile" style="--i:5"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16v-3l2.2-5A2 2 0 0 1 7 7h10a2 2 0 0 1 1.8 1l2.2 5v3a1 1 0 0 1-1 1h-1M5 17H4a1 1 0 0 1-1-1M3 13h18M9 17h6"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>Collision centers</div>
+      <div class="ring-tile" style="--i:6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16v-3l2.2-5A2 2 0 0 1 7 7h10a2 2 0 0 1 1.8 1l2.2 5v3a1 1 0 0 1-1 1h-1M5 17H4a1 1 0 0 1-1-1M3 13h18M9 17h6"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>Car dealers</div>
+      <div class="ring-tile" style="--i:7"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Repair shops</div>
+      <div class="ring-tile" style="--i:8"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>Body shops</div>
+      <div class="ring-tile" style="--i:9"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 17v4M17 19h4"/></svg>Detailers</div>
+      <div class="ring-tile" style="--i:10"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v5.5M12 15.5V21M3 12h5.5M15.5 12H21"/></svg>Tire shops</div>
+      <div class="ring-tile" style="--i:11"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16v-3l2.2-5A2 2 0 0 1 7 7h10a2 2 0 0 1 1.8 1l2.2 5v3a1 1 0 0 1-1 1h-1M5 17H4a1 1 0 0 1-1-1M3 13h18M9 17h6"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>Collision centers</div>
     </div>
   </div>
-  <p class="sr-only">Towns we serve: Appleton, Neenah, Menasha, Kaukauna, Little Chute, and Grand Chute.</p>
 </section>
 
-<!-- ============ WHAT'S INCLUDED ============ -->
-<section id="included" class="panel" aria-labelledby="included-title">
+<!-- ============ SERVICES ============ -->
+<section class="panel" aria-labelledby="services-title">
   <div class="container">
     <div class="section-head">
-      <h2 id="included-title">One process. Any problem.</h2>
-      <p data-reveal style="--rd:.2s">Every engagement runs the same six steps, whether it's photography and Buyer's Guide prep, listing copy, or something else entirely.</p>
+      <h2 id="services-title">What we can take off your plate</h2>
+      <p data-reveal style="--rd:.15s">Pick one, or let us figure out which one matters most for your business right now.</p>
+    </div>
+    <div class="cards two" data-stagger>
+      <a class="card" href="/services/automotive-seo">
+        <span class="ico-tile" style="--c:var(--blue);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+        <h3>SEO & Google Business Profile</h3>
+        <p>Show up when nearby customers search for what you sell or fix, on Google Search and Google Maps.</p>
+        
+        <span class="more">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="card" href="/services/automotive-website-design">
+        <span class="ico-tile" style="--c:#f3f4f6;--ic:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span>
+        <h3>Website design</h3>
+        <p>Fast, mobile-friendly websites for dealers and shops, built to turn visitors into calls, quotes, and appointments.</p>
+        
+        <span class="more">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="card" href="/services/automotive-advertising">
+        <span class="ico-tile" style="--c:var(--yellow);--ic:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15 9a3 3 0 0 1 0 6M18 6a7 7 0 0 1 0 12"/></svg></span>
+        <h3>Ads, social & reviews</h3>
+        <p>Google and Facebook ads, social posting, and a steady system for earning and answering reviews.</p>
+        
+        <span class="more">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="card" href="/services/vehicle-listing-content">
+        <span class="ico-tile" style="--c:var(--green);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
+        <h3>Listing photos & copy</h3>
+        <p>Vehicle photos and listing descriptions that make your inventory stand out on your site and marketplaces.</p>
+        
+        <span class="more">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+    <p class="faq-more">Problem not on the list? <a href="/contact">Tell us about it</a>. If it's marketing or merchandising, we can probably scope it.</p>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section aria-labelledby="process-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="process-title">One process. Any problem.</h2>
+      <p data-reveal style="--rd:.15s">Every engagement runs the same six steps, whether it's local SEO for a repair shop or listing copy for a used car lot.</p>
     </div>
     <ol class="steps" data-stagger>
       <li class="step">
         <span class="step-ico" style="--c:var(--blue);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
         <span class="num" aria-hidden="true">01</span>
         <h3>Tell us the problem</h3>
-        <p>Listing copy, photos, compliance paperwork, traffic, whatever's actually slowing your lot down.</p>
+        <p>Rankings, your website, ads, reviews, listings. Whatever is actually slowing you down.</p>
       </li>
       <li class="step">
-        <span class="step-ico" style="--c:var(--yellow)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m14.5 9.5-2 5-5 2 2-5z"/></svg></span>
+        <span class="step-ico" style="--c:var(--yellow);--ic:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m14.5 9.5-2 5-5 2 2-5z"/></svg></span>
         <span class="num" aria-hidden="true">02</span>
         <h3>We scope a plan</h3>
-        <p>You get a plan built around your lot, not a one-size-fits-all package.</p>
+        <p>A written plan built around your business, not a one-size-fits-all package.</p>
       </li>
       <li class="step">
         <span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8l9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg></span>
         <span class="num" aria-hidden="true">03</span>
         <h3>We get to work</h3>
-        <p>Photography, copy, compliance prep, whatever the plan calls for, on your schedule.</p>
+        <p>SEO, web, ads, reviews, listing content. Whatever the plan calls for.</p>
       </li>
       <li class="step">
-        <span class="step-ico" style="--c:var(--ink);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <span class="step-ico" style="--c:#f3f4f6;--ic:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
         <span class="num" aria-hidden="true">04</span>
         <h3>You review everything</h3>
-        <p>Nothing goes live, and nothing gets signed, without your sign-off first.</p>
+        <p>Nothing goes live without your sign-off first.</p>
       </li>
       <li class="step">
         <span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M7 9l5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></span>
         <span class="num" aria-hidden="true">05</span>
         <h3>It goes live</h3>
-        <p>Delivered wherever it needs to land: your inventory system, your listings, your lot.</p>
+        <p>Delivered wherever it needs to land: your site, your listings, your profiles.</p>
       </li>
       <li class="step">
         <span class="step-ico" style="--c:var(--green);--ic:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
         <span class="num" aria-hidden="true">06</span>
         <h3>We stick around</h3>
-        <p>Month-to-month, so the plan can change as your lot does.</p>
+        <p>Month-to-month, so the plan changes as your business does.</p>
       </li>
     </ol>
-    <div class="not-included">
-      <h3>Not included</h3>
-      <ul>
-        <li><b>Facebook Marketplace posting.</b> Meta banned direct dealer posting in January 2023, and workarounds put your account at risk.</li>
-        <li><b>Reconditioning, detailing, or mechanical work.</b> Vehicles just need to be clean for photos.</li>
-        <li><b>Pricing or appraisal advice.</b> That's your call.</li>
-        <li><b>Taking title to vehicles.</b> We're a service business, not a dealer.</li>
-      </ul>
-    </div>
+    <p class="steps-more"><a class="text-link" href="/how-it-works">See how it works <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
   </div>
 </section>
 
 <!-- ============ CONTACT ============ -->
-<section id="contact" class="panel dark contact" aria-labelledby="cta-title">
+<section id="contact" class="panel dark contact " aria-labelledby="cta-title">
   <div class="container contact-grid">
     <div>
-      <h2 id="cta-title" class="blur-in">Let's figure out what's slowing your lot down.</h2>
-      <p class="lede" data-reveal style="--rd:.2s">Tell us what's not working, listings, photos, compliance, traffic, whatever it is, and we'll follow up with a plan built around it.</p>
+      <h2 id="cta-title" class="blur-in">Let's figure out what's slowing your business down.</h2>
+      <p class="lede" data-reveal style="--rd:.2s">Tell us what's not working, whether that's search rankings, your website, ads, reviews, or listings, and we'll follow up with a plan built around it.</p>
       <ul class="facts" data-stagger>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Scoped to your lot, not a fixed package</li>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Month-to-month, 30 days' written notice</li>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pilot batch available for new dealers</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Custom plans, scoped to your business</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Month-to-month, 30 days' written notice</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Based in Wisconsin, working nationwide</li>
       </ul>
     </div>
 
     <div class="contact-card" data-reveal style="--rd:.15s">
       <form id="contactForm" novalidate>
-        <h2 id="contact-title">Tell us about your lot</h2>
-        <p class="form-sub">We'll follow up to talk through your inventory and schedule.</p>
+        <h2 id="contact-title">Tell us about your business</h2>
+        <p class="form-sub">We'll follow up to ask a few questions and talk through a plan.</p>
         <div class="form-error-banner" id="formErrorBanner" role="alert">Something went wrong sending your message. Please try again in a moment.</div>
         <div class="form-grid">
           <div class="field field-full">
-            <label for="f-dealer">Dealership name <span class="req" aria-hidden="true">*</span></label>
-            <input id="f-dealer" name="dealership" type="text" autocomplete="organization" required placeholder="e.g. Fox Valley Auto Sales">
-            <span class="error-msg" role="alert">Please enter your dealership name.</span>
+            <label for="f-business">Business name <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-business" name="business" type="text" autocomplete="organization" required placeholder="e.g. Main Street Auto">
+            <span class="error-msg" role="alert">Please enter your business name.</span>
           </div>
           <div class="field">
             <label for="f-name">Your name <span class="req" aria-hidden="true">*</span></label>
@@ -611,290 +289,152 @@ footer{margin:12px;padding-top:64px;background:var(--surface);border-radius:var(
             <span class="error-msg" role="alert">Enter a valid email so we can reply.</span>
           </div>
           <div class="field field-full">
-            <label for="f-units">Roughly how many units do you move a month?</label>
-            <input id="f-units" name="units_per_month" type="text" inputmode="numeric" placeholder="e.g. 20">
+            <label for="f-type">Type of business</label>
+            <select id="f-type" name="business_type">
+              <option value="">Choose one (optional)</option>
+              <option>Car dealer</option>
+              <option>Auto repair shop</option>
+              <option>Body or collision shop</option>
+              <option>Detailer</option>
+              <option>Tire shop</option>
+              <option>Other automotive business</option>
+            </select>
           </div>
           <div class="field field-full">
-            <label for="f-message">What's slowing your lot down?</label>
-            <textarea id="f-message" name="message" placeholder="Listing copy, photos, traffic, compliance, current inventory system, timing..."></textarea>
+            <label for="f-message">What's slowing your business down?</label>
+            <textarea id="f-message" name="message" placeholder="Rankings, website, ads, reviews, listings, timing, questions..."></textarea>
           </div>
         </div>
         <button type="submit" class="btn btn-accent contact-submit" id="contactSubmit">
           <span class="btn-label">Send</span>
         </button>
-        <p class="contact-fineprint">We use this only to reply to you. See our <a href="privacy.html">Privacy Policy</a>.</p>
+        <p class="contact-fineprint">We use this only to reply to you. See our <a href="/privacy">Privacy Policy</a>.</p>
       </form>
       <div class="form-success" id="formSuccess" tabindex="-1" role="status">
-        <div class="success-ring">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-        </div>
+        <div class="success-ring"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
         <h2>Message sent</h2>
         <p>Thanks for reaching out. We'll follow up soon.</p>
       </div>
     </div>
   </div>
 </section>
-<!-- ============ EXAMPLE: LISTING COPY ============ -->
-<section id="compliance" aria-labelledby="compliance-title">
-  <div class="container compliance-grid">
-    <div>
-      <h2 id="compliance-title">One example: listing copy that actually sells.</h2>
-      <p class="lede" data-reveal style="--rd:.2s">Most listings are the same three sentences with the trim level swapped out. A buyer scrolling past forty of them can't tell your car apart from the one two rows down. We write from a VIN decode and what's actually on the vehicle, not a template, so the listing describes the car in front of you.</p>
-      <ul class="req-list" data-stagger>
-        <li><span class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>The exact trim, options, and features actually on the vehicle</li>
-        <li><span class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Condition notes: wear, damage, anything a buyer would ask about</li>
-        <li><span class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Language written to be read, not just to fill a field</li>
-        <li><span class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>A draft you approve before it ever goes live</li>
-      </ul>
-    </div>
-    <div class="boundary-box" data-reveal style="--rd:.15s">
-      <div class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg></div>
-      <p style="margin-bottom:14px"><b>Who approves the copy before it's live?</b> You do, every time.</p>
-      <p>We write the draft from the VIN decode and what's actually on the vehicle. Nothing publishes until you've read it and signed off, so the listing never says something about the car that isn't true.</p>
-      <p>This is one example. If something else on your lot needs the same kind of attention, tell us, it's the same conversation.</p>
-    </div>
-  </div>
-</section>
 
 <!-- ============ FAQ ============ -->
-<section id="faq" aria-labelledby="faq-title">
+<section id="faq" class="" aria-labelledby="faq-title">
   <div class="container">
-    <div class="section-head">
-      <h2 id="faq-title">Frequently asked questions</h2>
-    </div>
+    <div class="section-head"><h2 id="faq-title">Frequently asked questions</h2></div>
     <div class="faq" data-reveal>
       <div class="faq-item">
         <h3 style="margin:0">
-          <button class="faq-q" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">
-            Do you only do photography and Buyer's Guide prep?
-            <span class="pm" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          <button class="faq-q" type="button" aria-expanded="false" aria-controls="home-a0" id="home-q0">
+            What kinds of automotive businesses do you work with?
+            <span class="pm" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
           </button>
         </h3>
-        <div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-q6"><div>
-          <p>That's our clearest example, but not the only thing we do. If listing copy, getting more traffic to listings that are already live, or something else specific to your lot is the real problem, tell us when you reach out and we'll scope a plan around it.</p>
+        <div class="faq-a" id="home-a0" role="region" aria-labelledby="home-q0"><div>
+          <p>Independent and used car dealers, auto repair shops, body and collision shops, detailers, and tire shops. If your business sells or services vehicles and you're not sure you fit, ask.</p>
         </div></div>
       </div>
       <div class="faq-item">
         <h3 style="margin:0">
-          <button class="faq-q" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
-            Do you take title to my vehicles, or act as a dealer?
-            <span class="pm" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          <button class="faq-q" type="button" aria-expanded="false" aria-controls="home-a1" id="home-q1">
+            Do you work with businesses outside Wisconsin?
+            <span class="pm" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
           </button>
         </h3>
-        <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div>
-          <p>No. We're a service vendor to licensed dealers. We never buy, sell, or take title to a vehicle.</p>
+        <div class="faq-a" id="home-a1" role="region" aria-labelledby="home-q1"><div>
+          <p>Yes. SEO, websites, ads, social media, review management, and listing copy are all done remotely, for automotive businesses anywhere in the US. On-site work like vehicle photography is available in Wisconsin.</p>
         </div></div>
       </div>
       <div class="faq-item">
         <h3 style="margin:0">
-          <button class="faq-q" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
-            Who's legally responsible for the Buyer's Guide?
-            <span class="pm" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          <button class="faq-q" type="button" aria-expanded="false" aria-controls="home-a2" id="home-q2">
+            How much does it cost?
+            <span class="pm" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
           </button>
         </h3>
-        <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2"><div>
-          <p>You are. The MV2872 is your legal disclosure as the dealer. We collect and record the inspection findings; you review, verify, and sign before it goes on the vehicle.</p>
+        <div class="faq-a" id="home-a2" role="region" aria-labelledby="home-q2"><div>
+          <p>It depends on what we're solving. After a short conversation, we send a written scope with the price before any work starts, so there are no surprise fees.</p>
         </div></div>
       </div>
       <div class="faq-item">
         <h3 style="margin:0">
-          <button class="faq-q" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
+          <button class="faq-q" type="button" aria-expanded="false" aria-controls="home-a3" id="home-q3">
             Is there a long-term contract?
-            <span class="pm" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            <span class="pm" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
           </button>
         </h3>
-        <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div>
-          <p>No. Every engagement is month-to-month with 30 days' written notice on either side. Minimums and billing get set when we scope your plan.</p>
+        <div class="faq-a" id="home-a3" role="region" aria-labelledby="home-q3"><div>
+          <p>No. Every engagement is month-to-month with 30 days' written notice on either side.</p>
         </div></div>
       </div>
       <div class="faq-item">
         <h3 style="margin:0">
-          <button class="faq-q" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
-            What do I need to have ready?
-            <span class="pm" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          <button class="faq-q" type="button" aria-expanded="false" aria-controls="home-a4" id="home-q4">
+            Can you guarantee first-page rankings on Google?
+            <span class="pm" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
           </button>
         </h3>
-        <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div>
-          <p>Vehicles presented washed, and lot access on your scheduled visit day. Photography doesn't work well on a dirty car, so a unit that isn't ready rolls to the next visit rather than being shot anyway.</p>
+        <div class="faq-a" id="home-a4" role="region" aria-labelledby="home-q4"><div>
+          <p>No, and be wary of anyone who does. Google decides rankings. What we can promise is the work that earns them: an accurate Google Business Profile, a properly built website, and steady, useful content, with plain reporting on what's changing.</p>
         </div></div>
       </div>
       <div class="faq-item">
         <h3 style="margin:0">
-          <button class="faq-q" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">
-            What inventory systems do you work with?
-            <span class="pm" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          <button class="faq-q" type="button" aria-expanded="false" aria-controls="home-a5" id="home-q5">
+            Do I have to sign up for everything?
+            <span class="pm" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
           </button>
         </h3>
-        <div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5"><div>
-          <p>Tell us what you run for inventory when you reach out and we'll confirm upload fits your setup before your first visit.</p>
+        <div class="faq-a" id="home-a5" role="region" aria-labelledby="home-q5"><div>
+          <p>No. Plenty of businesses start with one service, like cleaning up their Google Business Profile or rewriting their listings, and add more only if it makes sense.</p>
         </div></div>
       </div>
     </div>
-    <p class="faq-more">Question not covered here? <a href="#contact">Send it to us</a>.</p>
+    <p class="faq-more">Question not covered here? <a href="/contact">Ask us directly</a>.</p>
   </div>
 </section>
-
 </main>
 
-<!-- ============ FOOTER ============ -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-about">
-        <a class="brand" href="#" aria-label="AuctionDesk Lot Services, home">
+        <a class="brand" href="/" aria-label="AuctionDesk home">
           <svg class="brand-mark" viewBox="0 0 36 36" fill="none" aria-hidden="true">
         <rect width="36" height="36" rx="10" fill="#111316"/>
         <path d="M9 14v-3a2 2 0 0 1 2-2h3M22 9h3a2 2 0 0 1 2 2v3M27 22v3a2 2 0 0 1-2 2h-3M14 27h-3a2 2 0 0 1-2-2v-3" stroke="#ff5a1f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="m13.5 18.5 3 3 6-6.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-          <span class="brand-name">AuctionDesk <span>Lot Services</span></span>
+          <span class="brand-name">AuctionDesk</span>
         </a>
-        <p>Custom lot services for independent used car dealers in the Fox Valley, from photography and Wisconsin Buyer's Guide compliance to whatever else is slowing your lot down. Operated by CWB Venture, LLC.</p>
+        <p>Marketing and merchandising for car dealers, repair shops, body shops, detailers, and tire shops. Based in Wisconsin, working nationwide. Operated by CWB Venture, LLC</p>
       </div>
-      <nav aria-label="Site">
-        <h3>Site</h3>
-        <ul>
-          <li><a href="#included">How we work</a></li>
-          <li><a href="#compliance">An example</a></li>
-            <li><a href="#faq">FAQ</a></li>
-        </ul>
+      <nav aria-label="Services">
+        <h2>Services</h2>
+        <ul><li><a href="/services/automotive-seo">SEO & Google Business Profile</a></li><li><a href="/services/automotive-website-design">Website Design</a></li><li><a href="/services/automotive-advertising">Ads, Social & Reviews</a></li><li><a href="/services/vehicle-listing-content">Listing Photos & Copy</a></li><li><a href="/services">All services</a></li></ul>
       </nav>
-      <nav aria-label="Legal">
-        <h3>Legal</h3>
+      <nav aria-label="Who we serve">
+        <h2>Who We Serve</h2>
+        <ul><li><a href="/industries/car-dealers">Car Dealers</a></li><li><a href="/industries/auto-repair-shops">Auto Repair Shops</a></li><li><a href="/industries/auto-body-shops">Body & Collision Shops</a></li><li><a href="/industries/detailing-and-tire-shops">Detailers & Tire Shops</a></li></ul>
+      </nav>
+      <nav aria-label="Company">
+        <h2>Company</h2>
         <ul>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Use</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="/how-it-works">How it works</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </nav>
     </div>
     <div class="footer-legal">
-      <span>© 2026 AuctionDesk Lot Services · A CWB Venture, LLC company · Fox Valley, WI</span>
-      <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
+      <span>© 2026 AuctionDesk · A CWB Venture, LLC company · Wisconsin, USA</span>
+      <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
     </div>
   </div>
   <div class="wordmark" aria-hidden="true">AuctionDesk</div>
 </footer>
 
-<script>
-// Mobile nav
-const header=document.getElementById('header');
-const toggle=document.getElementById('navToggle');
-function setNav(open){
-  header.classList.toggle('nav-open',open);
-  toggle.setAttribute('aria-expanded',String(open));
-  toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
-}
-toggle.addEventListener('click',()=>setNav(!header.classList.contains('nav-open')));
-document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>setNav(false)));
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&header.classList.contains('nav-open')){setNav(false);toggle.focus();}});
-const onScroll=()=>header.classList.toggle('scrolled',scrollY>8);
-addEventListener('scroll',onScroll,{passive:true});
-onScroll();
-
-// Scroll-in motion. Everything is visible by default; this only hides things
-// until they enter the viewport, and skips straight to the end state for
-// reduced-motion users.
-document.querySelectorAll('.blur-in').forEach(h=>{
-  const words=h.textContent.trim().split(/\s+/);
-  h.textContent='';
-  words.forEach((w,i)=>{
-    const s=document.createElement('span');
-    s.className='w';
-    s.style.setProperty('--i',i);
-    s.textContent=w;
-    h.append(s,' ');
-  });
-  h.classList.add('split');
-});
-document.querySelectorAll('[data-stagger],[data-i]').forEach(p=>{
-  [...p.children].forEach((c,i)=>c.style.setProperty('--i',i));
-});
-const revealables=document.querySelectorAll('[data-reveal],[data-stagger],.blur-in,.wordmark');
-if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){
-  revealables.forEach(el=>el.classList.add('in'));
-}else{
-  const onEnter=(entries,obs)=>entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}
-  });
-  const io=new IntersectionObserver(onEnter,{rootMargin:'0px 0px -8% 0px'});
-  // The wordmark is the last thing on the page, so the page can't scroll far
-  // enough for it to clear the -8% margin above. Watch it with no margin.
-  const ioBottom=new IntersectionObserver(onEnter);
-  revealables.forEach(el=>(el.classList.contains('wordmark')?ioBottom:io).observe(el));
-}
-
-// Contact form validation: validate on blur, re-validate on input after first error
-const form=document.getElementById('contactForm');
-const validators={
-  'f-dealer':v=>v.trim().length>0,
-  'f-name':v=>v.trim().length>0,
-  'f-email':v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())
-};
-function validateField(el){
-  const fn=validators[el.id];
-  if(!fn)return true;
-  const ok=fn(el.value);
-  el.closest('.field').classList.toggle('invalid',!ok);
-  el.setAttribute('aria-invalid',String(!ok));
-  return ok;
-}
-Object.keys(validators).forEach(id=>{
-  const el=document.getElementById(id);
-  el.addEventListener('blur',()=>{if(el.value!=='')validateField(el);});
-  el.addEventListener('input',()=>{
-    if(el.closest('.field').classList.contains('invalid'))validateField(el);
-  });
-});
-
-// Submission target: replace YOUR_FORM_ID below with a real Formspree (or
-// equivalent) endpoint ID before this form can actually deliver anywhere.
-// Sign up free at https://formspree.io, create a form, and swap the ID in
-// the constant below. No other code changes needed.
-const CONTACT_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  let firstBad = null;
-  Object.keys(validators).forEach(id => {
-    const el = document.getElementById(id);
-    if (!validateField(el) && !firstBad) firstBad = el;
-  });
-  if (firstBad) { firstBad.focus(); return; }
-
-  const errorBanner = document.getElementById('formErrorBanner');
-  errorBanner.classList.remove('show');
-  const btn = document.getElementById('contactSubmit');
-  const originalLabel = btn.querySelector('.btn-label').textContent;
-  btn.disabled = true;
-  btn.querySelector('.btn-label').textContent = 'Sending…';
-
-  try {
-    const res = await fetch(CONTACT_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: new FormData(form)
-    });
-    if (!res.ok) throw new Error('submit failed');
-    form.style.display = 'none';
-    const s = document.getElementById('formSuccess');
-    s.classList.add('show');
-    s.focus();
-  } catch (err) {
-    errorBanner.classList.add('show');
-    btn.disabled = false;
-    btn.querySelector('.btn-label').textContent = originalLabel;
-  }
-});
-
-// FAQ accordion
-document.querySelectorAll('.faq-q').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const item=btn.closest('.faq-item');
-    const open=item.classList.toggle('open');
-    btn.setAttribute('aria-expanded',String(open));
-  });
-});
-</script>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
