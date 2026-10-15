@@ -71,10 +71,8 @@ document.querySelectorAll('.faq-q').forEach(btn => {
 });
 
 // ---------- Contact form (home and contact pages) ----------
-// Submission target: replace YOUR_FORM_ID with a real Formspree (or
-// equivalent) endpoint ID before the form can deliver anywhere. Sign up free
-// at https://formspree.io, create a form, and swap the ID below.
-const CONTACT_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+// Submissions go to the AuctionDesk Formspree form, which emails them to us.
+const CONTACT_ENDPOINT = 'https://formspree.io/f/xgaopale';
 
 const form = document.getElementById('contactForm');
 if (form) {
