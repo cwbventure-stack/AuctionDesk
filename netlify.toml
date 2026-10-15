@@ -1,0 +1,7 @@
+# Netlify builds the site from src/ and publishes only the generated public/ folder.
+[build]
+  command = "OUT=public node build.mjs"
+  publish = "public"
+
+[build.environment]
+  NODE_VERSION = "22"

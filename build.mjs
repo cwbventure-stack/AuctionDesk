@@ -1,12 +1,18 @@
-// Builds the static site from src/ into the repo root. Run: node build.mjs
-// Generated HTML is committed and deployed as plain static files (see vercel.json).
-import { mkdirSync, writeFileSync } from 'node:fs';
-import { dirname } from 'node:path';
+// Builds the static site from src/. Run: node build.mjs
+// By default it writes into the repo root (what Vercel serves today).
+// With OUT=public it writes a self-contained folder instead, which is what
+// Netlify builds and publishes (see netlify.toml), so source files stay private.
+import { cpSync, mkdirSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+
 import { layout, SITE } from './src/site.mjs';
 import home from './src/pages/home.mjs';
 import services from './src/pages/services.mjs';
 import industries from './src/pages/industries.mjs';
 import company from './src/pages/company.mjs';
+
+const OUT = process.env.OUT || '.';
+const out = file => join(OUT, file);
 
 const pages = [home, ...services, ...industries, ...company];
 
@@ -24,22 +30,31 @@ for (const p of pages) {
 
 const fileFor = p => p.file || (p.path === '/' ? 'index.html' : `${p.path.slice(1)}.html`);
 for (const p of pages) {
-  const file = fileFor(p);
+  const file = out(fileFor(p));
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, layout(p));
 }
 
 const today = new Date().toISOString().slice(0, 10);
 const indexable = pages.filter(p => !p.noindex);
-writeFileSync('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
+writeFileSync(out('sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${indexable.map(p => `  <url><loc>${SITE}${p.path === '/' ? '/' : p.path}</loc><lastmod>${today}</lastmod><priority>${p.priority || '0.7'}</priority></url>`).join('\n')}
 </urlset>
 `);
-writeFileSync('robots.txt', `User-agent: *
+writeFileSync(out('robots.txt'), `User-agent: *
 Allow: /
 
 Sitemap: ${SITE}/sitemap.xml
 `);
 
-console.log(`Built ${pages.length} pages + sitemap.xml (${indexable.length} URLs) + robots.txt`);
+// A separate output folder also needs the static files the pages reference.
+if (OUT !== '.') {
+  cpSync('assets', out('assets'), { recursive: true });
+  cpSync('favicon.svg', out('favicon.svg'));
+  // Netlify serves /about.html as well as /about; send the .html versions to the
+  // clean URL (what Vercel's cleanUrls did). "!" is needed because the file exists.
+  writeFileSync(out('_redirects'), indexable.map(p => `/${fileFor(p)}  ${p.path}  301!`).join('\n') + '\n');
+}
+
+console.log(`Built ${pages.length} pages + sitemap.xml (${indexable.length} URLs) + robots.txt into ${OUT}`);
