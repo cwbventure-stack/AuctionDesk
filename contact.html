@@ -92,6 +92,9 @@
       <form id="contactForm" novalidate>
         <h2 id="contact-title">Tell us about your business</h2>
         <p class="form-sub">We'll follow up to ask a few questions and talk through a plan.</p>
+        <input type="hidden" name="_subject" value="New inquiry from auctiondesk.net">
+        <!-- Spam trap: hidden from people and screen readers; Formspree drops submissions that fill it in. -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <div class="form-error-banner" id="formErrorBanner" role="alert">Something went wrong sending your message. Please try again in a moment.</div>
         <div class="form-grid">
           <div class="field field-full">
