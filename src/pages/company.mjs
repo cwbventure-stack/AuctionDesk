@@ -1,4 +1,4 @@
-import { icon, BRAND, LEGAL_NAME, STEPS, tone, pageHero, sectionHead, checkList, faqSection, ctaBand, contactSection, stepsRow } from '../site.mjs';
+import { icon, BRAND, LEGAL_NAME, GA_ID, STEPS, tone, pageHero, sectionHead, checkList, faqSection, ctaBand, contactSection, stepsRow } from '../site.mjs';
 
 // ---------- How it works ----------
 const how = {
@@ -131,7 +131,7 @@ const privacy = {
   crumbs: [['Privacy Policy', null]],
   priority: '0.2'
 };
-privacy.body = `${pageHero(privacy, { ctas: false, lede: 'Last updated October 14, 2026' })}
+privacy.body = `${pageHero(privacy, { ctas: false, lede: 'Last updated October 19, 2026' })}
 
 <section aria-label="Policy">
   <div class="container">
@@ -139,14 +139,16 @@ privacy.body = `${pageHero(privacy, { ctas: false, lede: 'Last updated October 1
       <p>${BRAND} is operated by ${LEGAL_NAME}, a Wisconsin limited liability company ("we," "us"). This page explains what information we collect through this website and how we use it.</p>
 
       <h2>What we collect</h2>
-      <p>The only personal information we collect is what you choose to submit through the contact form: your business name, your name, your email address, and optionally a phone number, your type of business, and any message you write. We don't use analytics, tracking pixels, or advertising cookies on this site, and we don't collect information automatically beyond what your browser sends to load the page.</p>
+      <p>The only personal information we collect is what you choose to submit through the contact form: your business name, your name, your email address, and optionally a phone number, your type of business, and any message you write. ${GA_ID
+        ? 'We also use Google Analytics to understand how people use this site, such as which pages are visited, how long people stay, and how they found us. It uses cookies and records general information like your browser, device, and approximate location, but it doesn\'t give us your name or contact details. We don\'t use advertising cookies or tracking pixels.'
+        : 'We don\'t use analytics, tracking pixels, or advertising cookies on this site, and we don\'t collect information automatically beyond what your browser sends to load the page.'}</p>
 
       <h2>How we use it</h2>
       <p>We use the information you submit only to respond to your inquiry and, if you become a client, to set up and administer your service agreement. We don't sell your information, and we don't share it with anyone except the service providers described below.</p>
 
       <h2>Third-party services we use</h2>
       <ul>
-        <li><b>Google Fonts.</b> This site loads typefaces from Google's servers. Google may log the request, including your IP address, under its own privacy policy.</li>
+        ${GA_ID ? '<li><b>Google Analytics.</b> Measures how this site is used, with cookies, under Google\'s own privacy policy. You can opt out with Google\'s <a href="https://tools.google.com/dlpage/gaoptout">opt-out browser add-on</a> or by blocking cookies in your browser.</li>\n        ' : ''}<li><b>Google Fonts.</b> This site loads typefaces from Google's servers. Google may log the request, including your IP address, under its own privacy policy.</li>
         <li><b>Form delivery service.</b> When you submit the contact form, it's delivered to us through a third-party form-processing service so we can read it by email. That provider processes the message only to route it to us.</li>
         <li><b>Hosting.</b> This site is hosted by Vercel, which may keep standard server logs, such as IP addresses and request times, to operate and secure the service.</li>
       </ul>

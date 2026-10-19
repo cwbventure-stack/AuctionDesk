@@ -5,6 +5,29 @@ export const SITE = 'https://www.auctiondesk.net';
 export const BRAND = 'AuctionDesk';
 export const LEGAL_NAME = 'CWB Venture, LLC';
 export const ORG_ID = `${SITE}/#organization`;
+// Google Analytics 4 Measurement ID (looks like 'G-XXXXXXXXXX'). Empty = analytics off.
+// Turning it on also switches the privacy policy to disclose Google Analytics.
+export const GA_ID = 'G-09JB5617XY';
+
+// Loads Google Analytics only on the live domain, so local previews and the
+// netlify.app address don't show up in the numbers. gtag() is always defined so
+// site.js can record events without checking whether analytics loaded.
+function analytics() {
+  if (!GA_ID) return '';
+  return `<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+if (/(^|\\.)auctiondesk\\.net$/.test(location.hostname)) {
+  var ga = document.createElement('script');
+  ga.async = true;
+  ga.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_ID}';
+  document.head.appendChild(ga);
+  gtag('js', new Date());
+  gtag('config', '${GA_ID}');
+}
+</script>
+`;
+}
 
 // ---------- Icons (24px stroke icons) ----------
 const ICON_PATHS = {
@@ -250,7 +273,7 @@ ${page.noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonica
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 <script>document.documentElement.classList.add('js')</script>
-${page.noindex ? '' : `<script type="application/ld+json">${jsonLd(page)}</script>`}
+${analytics()}${page.noindex ? '' : `<script type="application/ld+json">${jsonLd(page)}</script>`}
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>

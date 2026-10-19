@@ -119,6 +119,7 @@ if (form) {
         body: new FormData(form)
       });
       if (!res.ok) throw new Error('submit failed');
+      if (window.gtag) gtag('event', 'generate_lead', { form_location: location.pathname });
       form.style.display = 'none';
       const s = document.getElementById('formSuccess');
       s.classList.add('show');
