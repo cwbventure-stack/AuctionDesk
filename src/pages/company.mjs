@@ -150,7 +150,7 @@ privacy.body = `${pageHero(privacy, { ctas: false, lede: 'Last updated October 1
       <ul>
         ${GA_ID ? '<li><b>Google Analytics.</b> Measures how this site is used, with cookies, under Google\'s own privacy policy. You can opt out with Google\'s <a href="https://tools.google.com/dlpage/gaoptout">opt-out browser add-on</a> or by blocking cookies in your browser.</li>\n        ' : ''}<li><b>Google Fonts.</b> This site loads typefaces from Google's servers. Google may log the request, including your IP address, under its own privacy policy.</li>
         <li><b>Form delivery service.</b> When you submit the contact form, it's delivered to us through a third-party form-processing service so we can read it by email. That provider processes the message only to route it to us.</li>
-        <li><b>Hosting.</b> This site is hosted by Vercel, which may keep standard server logs, such as IP addresses and request times, to operate and secure the service.</li>
+        <li><b>Hosting.</b> This site is hosted by Netlify, which may keep standard server logs, such as IP addresses and request times, to operate and secure the service.</li>
       </ul>
 
       <h2>How long we keep it</h2>

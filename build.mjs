@@ -1,9 +1,10 @@
-// Builds the static site from src/. Run: node build.mjs
-// By default it writes into the repo root (what Vercel serves today).
-// With OUT=public it writes a self-contained folder instead, which is what
-// Netlify builds and publishes (see netlify.toml), so source files stay private.
-import { cpSync, mkdirSync, writeFileSync } from 'node:fs';
+// Builds the static site from src/ into public/. Run: node build.mjs
+// Netlify runs this on every push and publishes only public/ (see netlify.toml),
+// so source files stay private. public/ is generated, so it isn't committed.
+import { cpSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+
+process.chdir(import.meta.dirname); // paths below are relative to the repo, wherever this is run from
 
 import { layout, SITE } from './src/site.mjs';
 import home from './src/pages/home.mjs';
@@ -11,7 +12,7 @@ import services from './src/pages/services.mjs';
 import industries from './src/pages/industries.mjs';
 import company from './src/pages/company.mjs';
 
-const OUT = process.env.OUT || '.';
+const OUT = 'public';
 const out = file => join(OUT, file);
 
 const pages = [home, ...services, ...industries, ...company];
@@ -29,6 +30,7 @@ for (const p of pages) {
 }
 
 const fileFor = p => p.file || (p.path === '/' ? 'index.html' : `${p.path.slice(1)}.html`);
+rmSync(OUT, { recursive: true, force: true }); // start clean so removed pages don't linger
 for (const p of pages) {
   const file = out(fileFor(p));
   mkdirSync(dirname(file), { recursive: true });
@@ -48,13 +50,11 @@ Allow: /
 Sitemap: ${SITE}/sitemap.xml
 `);
 
-// A separate output folder also needs the static files the pages reference.
-if (OUT !== '.') {
-  cpSync('assets', out('assets'), { recursive: true });
-  cpSync('favicon.svg', out('favicon.svg'));
-  // Netlify serves /about.html as well as /about; send the .html versions to the
-  // clean URL (what Vercel's cleanUrls did). "!" is needed because the file exists.
-  writeFileSync(out('_redirects'), indexable.map(p => `/${fileFor(p)}  ${p.path}  301!`).join('\n') + '\n');
-}
+// Static files the pages reference.
+cpSync('assets', out('assets'), { recursive: true });
+cpSync('favicon.svg', out('favicon.svg'));
+// Netlify serves /about.html as well as /about; send the .html versions to the
+// clean URL. "!" is needed because the file exists.
+writeFileSync(out('_redirects'), indexable.map(p => `/${fileFor(p)}  ${p.path}  301!`).join('\n') + '\n');
 
 console.log(`Built ${pages.length} pages + sitemap.xml (${indexable.length} URLs) + robots.txt into ${OUT}`);

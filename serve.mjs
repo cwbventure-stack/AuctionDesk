@@ -1,11 +1,13 @@
-// Local preview server that mimics Vercel's cleanUrls: /about -> about.html.
-// Run: node serve.mjs [port]
+// Local preview: rebuilds the site, then serves public/ with clean URLs
+// (/about -> about.html), like Netlify. Run: node serve.mjs [port]
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
 
+await import('./build.mjs');
+
 const port = Number(process.argv[2]) || 4175;
-const root = import.meta.dirname; // serve files next to this script, wherever it's launched from
+const root = join(import.meta.dirname, 'public');
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.png': 'image/png', '.xml': 'application/xml', '.txt': 'text/plain' };
 
 createServer(async (req, res) => {
