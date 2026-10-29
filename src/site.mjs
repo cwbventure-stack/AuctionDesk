@@ -79,7 +79,7 @@ export function icon(name, size) {
 const TONES = {
   blue: '--c:var(--blue);--ic:#fff',
   yellow: '--c:var(--yellow);--ic:var(--ink)',
-  ink: '--c:#f3f4f6;--ic:var(--ink)', // light tile: a black tile would vanish on the dark theme
+  ink: '--c:var(--navy);--ic:#fff',
   green: '--c:var(--green);--ic:#fff',
   accent: '--c:var(--accent);--ic:var(--ink)'
 };
@@ -136,7 +136,7 @@ ${items.map(i => `            <a href="${i.href}"${cur(i.href)}><b>${i.name}</b>
       </ul>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-light" href="/contact">Get In Touch</a>
+      <a class="btn btn-dark" href="/contact">Get In Touch</a>
       <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg>
       </button>
@@ -255,8 +255,7 @@ export function layout(page) {
 <title>${page.title}</title>
 <meta name="description" content="${page.description}">
 ${page.noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${url}">`}
-<meta name="theme-color" content="#08090c">
-<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${BRAND}">
 <meta property="og:title" content="${page.ogTitle || page.title}">
@@ -270,7 +269,7 @@ ${page.noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonica
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 <script>document.documentElement.classList.add('js')</script>
 ${analytics()}${page.noindex ? '' : `<script type="application/ld+json">${jsonLd(page)}</script>`}

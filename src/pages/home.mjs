@@ -17,36 +17,10 @@ const page = {
   ]
 };
 
-// Hero diagram: six services feeding one result.
-const nodes = [
-  { x: 120, y: 170, big: true, d: '.8s', icon: 'search', tone: 'blue', label: 'Local SEO' },
-  { x: 232, y: 72, d: '.95s', icon: 'star', tone: 'yellow', label: 'Reviews' },
-  { x: 252, y: 280, d: '1.1s', icon: 'camera', label: 'Listing content' },
-  { x: 768, y: 74, d: '.95s', icon: 'browser', tone: 'ink', label: 'Website' },
-  { x: 880, y: 170, big: true, d: '.8s', icon: 'megaphone', label: 'Ads' },
-  { x: 758, y: 284, d: '1.1s', icon: 'chat', tone: 'green', label: 'Social' }
-];
-const flow = `<div class="flow" aria-hidden="true">
-      <svg class="lines" viewBox="0 0 1000 340">
-        <path pathLength="1" style="--d:.2s" d="M440 170H130"/>
-        <path pathLength="1" style="--d:.4s" d="M372 170 312 72H232"/>
-        <path pathLength="1" style="--d:.5s" d="M352 170 300 280H252"/>
-        <path pathLength="1" style="--d:.2s" d="M560 170H870"/>
-        <path pathLength="1" style="--d:.4s" d="M628 170 688 74H768"/>
-        <path pathLength="1" style="--d:.5s" d="M648 170 700 284H758"/>
-        <circle style="--d:1s" cx="312" cy="72" r="4"/>
-        <circle style="--d:1.05s" cx="300" cy="280" r="4"/>
-        <circle style="--d:1s" cx="688" cy="74" r="4"/>
-        <circle style="--d:1.05s" cx="700" cy="284" r="4"/>
-      </svg>
-${nodes.map(n => `      <div class="node" style="--x:${n.x};--y:${n.y};${n.big ? '--s:9cqw;' : ''}--d:${n.d}">
-        ${tile(n.icon, n.tone, 'tile')}
-        <span class="label">${n.label}</span>
-      </div>`).join('\n')}
-      <div class="node hub" style="--x:500;--y:170;--s:12cqw;--d:0s">
-        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M20 6 9 17l-5-5"/></svg></div>
-      </div>
-    </div>`;
+// Hero photo: free under the Unsplash License (Mehmet Talha Onuk).
+const heroPhoto = `<figure class="hero-photo">
+      <img src="/assets/hero-shop-1600.jpg" srcset="/assets/hero-shop-800.jpg 800w, /assets/hero-shop-1600.jpg 1600w" sizes="(max-width: 1000px) 100vw, 600px" width="1600" height="1200" alt="Bright, modern auto repair shop with a car on a lift" fetchpriority="high">
+    </figure>`;
 
 // Rotating arc of business types (decorative; the real links sit in the heading text).
 const ringTypes = [
@@ -59,9 +33,9 @@ const ring = [...ringTypes, ...ringTypes].map(([ic, name], i) =>
 const check = icon('check', 18);
 
 page.body = `<!-- ============ HERO ============ -->
-<section class="hero panel" aria-labelledby="hero-title">
-  <div class="container">
-    ${flow}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div class="hero-copy">
     <h1 id="hero-title" class="blur-in">${page.h1}</h1>
     <p class="hero-sub" data-reveal style="--rd:.35s">SEO, websites, ads, reviews, and listing content for car dealers, repair shops, body shops, detailers, and tire shops. Tell us what's slowing you down and we'll scope a plan around it.</p>
     <div class="hero-ctas" data-reveal style="--rd:.5s">
@@ -73,6 +47,10 @@ page.body = `<!-- ============ HERO ============ -->
       <li>${check}Month-to-month, 30 days' notice</li>
       <li>${check}You approve everything first</li>
     </ul>
+    </div>
+    <div class="hero-visual" data-reveal style="--rd:.2s">
+    ${heroPhoto}
+    </div>
   </div>
 </section>
 
